@@ -44,12 +44,21 @@ module.exports = {
     }
   },
   async AllAbility(req, res) {
-    await Ability.findAll().then((result) => {
+    const ability = await Ability.findAll({
+      where: {
+        employee_Id: req.body.employee_Id,
+      },
+    });
+    if (ability.length != 0) {
       res.status(200).send({
         msg: "All fine Ability of employee",
-        count: result.length,
-        rs: result,
+        count: ability.length,
+        rs: ability,
       });
-    });
+    } else {
+      res.status(404).send({
+        msg: "Experience Id is not found",
+      });
+    }
   },
 };

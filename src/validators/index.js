@@ -18,13 +18,7 @@ const {
 const { checkExperience, RenderExperience } = require("./validExperience");
 const { CheckHighschool, RenderHighschool } = require("./validHighschool");
 const { checkHW, RenderHW } = require("./validHusbandwife");
-const {
-  checkIndentityCard,
-  RenderIndentityCard,
-} = require("./validIndentitycard");
 const { checkParent, RenderParent } = require("./validParent");
-const { checkStudy, RenderStudy } = require("./validStudy");
-const { checkTrainig, RenderTraining } = require("./validTraining");
 module.exports = {
   CheckAdmin,
   RedenAdmin,
@@ -48,12 +42,6 @@ module.exports = {
   RenderHighschool,
   checkHW,
   RenderHW,
-  checkIndentityCard,
-  RenderIndentityCard,
   checkParent,
   RenderParent,
-  checkStudy,
-  RenderStudy,
-  checkTrainig,
-  RenderTraining,
 };

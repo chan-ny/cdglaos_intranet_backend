@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       employee_Id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       bf_nohome: DataTypes.STRING(8),
       bf_unit: DataTypes.STRING(8),

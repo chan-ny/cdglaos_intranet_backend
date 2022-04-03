@@ -92,12 +92,58 @@ module.exports = {
         .replace(/['"]+/g, "")
         .replace(/(^.*\[|\].*$)/g, "")
         .split(",");
-      oldimage.push("bf_image-1648301422280-75.jpg");
-      res.send(oldimage);
+      await uploadArray(req, res, (err) => {
+        if (err) {
+          res.end("Error upload file image");
+        } else {
+          for (let index = 0; index < pathImage.length; index++) {
+            const element = pathImage[index];
+            oldimage.push(element);
+          }
+          //update new image
+          bookfimaly
+            .update({
+              bf_image: oldimage,
+            })
+            .then((result) => {
+              res.status(200).send({
+                msg: "Update bookfimaly new image is sucess",
+                rs: result,
+              });
+            });
+        }
+      });
     } else {
       res.status(404).send({
         msg: "Bookfimaly id is not found",
       });
     }
+  },
+  async UpdateBF(req, res) {
+    const bookfimaly = await Bookfimary.findByPk(req.params.Id);
+    if (bookfimaly) {
+      bookfimaly.update(req.body).then((result) => {
+        res.status(201).send({
+          msg: "Update Bookfimaly of Employee is success",
+          rs: result,
+        });
+      });
+    } else {
+      res.status(404).send({
+        msg: "Bookfimaly Id is not found",
+      });
+    }
+  },
+  async DisplayBookfimaly(req, res) {
+    const bookfimaly = await Bookfimary.findOne({
+      where: {
+        employee_Id: req.body.employee_Id,
+      },
+    }).then((result) => {
+      res.status(200).send({
+        msg: "Display is bookfimaly",
+        rs: result,
+      });
+    });
   },
 };

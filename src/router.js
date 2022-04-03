@@ -15,6 +15,7 @@ module.exports = (app) => {
     Controller.authentication.isAuthenAdmin,
     Controller.AdminCTL.index
   );
+
   // User CTL
   app.post(
     "/regiter_user",
@@ -28,6 +29,7 @@ module.exports = (app) => {
     Controller.authentication.isAuthenUser,
     Controller.UserController.index
   );
+
   // Province CTL
   app.post(
     "/province",
@@ -115,71 +117,147 @@ module.exports = (app) => {
 
   //Bookfimaly for employee
   app.post("/emp/bookfimaly", Controller.BookfimalyController.CreateBookfimaly);
-  app.put("/emp/bookfimaly/:Id", Controller.BookfimalyController.RemoveImageBF);
-  app.put("/emp/add_bookfimaly/:Id", Controller.BookfimalyController.AddImageBF);
-
+  app.put(
+    "/emp/rm_bookfimaly/:Id",
+    Controller.BookfimalyController.RemoveImageBF
+  );
+  app.put(
+    "/emp/add_bookfimaly/:Id",
+    Controller.BookfimalyController.AddImageBF
+  );
+  app.put("/emp/up_bookfimaly/:Id", Controller.BookfimalyController.UpdateBF);
+  app.get("/emp/bookfimaly", Controller.BookfimalyController.DisplayBookfimaly);
 
   //Born Location for employee
   app.post(
     "/emp/bornlocation",
     Validator.checkBornLocation(),
-    Validator.RenderBornLocation
+    Validator.RenderBornLocation,
+    Controller.BornLocationController.CreateBl
   );
   app.put(
-    "/emp/bornlocation",
+    "/emp/bornlocation/:Id",
     Validator.checkBornLocation(),
-    Validator.RenderBornLocation
+    Validator.RenderBornLocation,
+    Controller.BornLocationController.UpdateBl
   );
+  app.delete(
+    "/emp/bornlocation/:Id",
+    Controller.BornLocationController.DeleteBL
+  );
+  app.get("/emp/bornlocation", Controller.BornLocationController.DisplayBL);
 
   // Experience for employee
   app.post(
     "/emp/experience",
     Validator.checkExperience(),
-    Validator.RenderExperience
+    Validator.RenderExperience,
+    Controller.ExperienceController.CreateExperience
   );
   app.put(
-    "/emp/experience",
+    "/emp/experience/:Id",
     Validator.checkExperience(),
-    Validator.RenderExperience
+    Validator.RenderExperience,
+    Controller.ExperienceController.UpdateExperience
   );
+  app.delete(
+    "/emp/experience/:Id",
+    Controller.ExperienceController.RemoveExperience
+  );
+  app.get("/emp/experience", Controller.ExperienceController.AllExperience);
 
   //High school for employee
   app.post(
     "/emp/highschool",
     Validator.CheckHighschool(),
-    Validator.RenderHighschool
+    Validator.RenderHighschool,
+    Controller.HigschoolController.CreateHighschool
   );
   app.put(
-    "/emp/highschool",
+    "/emp/highschool/:Id",
     Validator.CheckHighschool(),
-    Validator.RenderHighschool
+    Validator.RenderHighschool,
+    Controller.HigschoolController.UpdateHighschool
   );
+  app.delete(
+    "/emp/highschool/:Id",
+    Controller.HigschoolController.RemoveHighschool
+  );
+  app.get("/emp/highschool", Controller.HigschoolController.AllHighschool);
 
   // Husb and Wife for employee
-  app.post("/emp/hw", Validator.checkHW(), Validator.RenderHW);
-  app.put("/emp/hw", Validator.checkHW(), Validator.RenderHW);
+  app.post(
+    "/emp/hw",
+    Validator.checkHW(),
+    Validator.RenderHW,
+    Controller.HusbandWifeController.CreateHusbandWife
+  );
+  app.put(
+    "/emp/hw/:Id",
+    Validator.checkHW(),
+    Validator.RenderHW,
+    Controller.HusbandWifeController.UpdateHusbandWife
+  );
+  app.delete("/emp/hw/:Id", Controller.HusbandWifeController.RemoveHusbandWife);
+  app.get("/emp/hw/", Controller.HusbandWifeController.AllHusbandWife);
 
   // Indentity Card for Employee
   app.post(
     "/emp/indentittycard",
-    Validator.checkIndentityCard(),
-    Validator.RenderIndentityCard
+    Controller.IndentiyCardController.CreateIndentityCard
   );
   app.put(
+    "/emp/upi_indentittycard/:Id",
+    Controller.IndentiyCardController.UpdateImageIDTTC
+  );
+  app.put(
+    "/emp/upt_indentittycard/:Id",
+    Controller.IndentiyCardController.UpdateTextIndentityCard
+  );
+  app.delete(
+    "/emp/indentittycard/:Id",
+    Controller.IndentiyCardController.RemoveIndentityCard
+  );
+  app.get(
     "/emp/indentittycard",
-    Validator.checkIndentityCard(),
-    Validator.RenderIndentityCard
+    Controller.IndentiyCardController.DisplayIndentityCard
   );
 
   // Parent for employee
-  app.post("/emp/parent", Validator.checkParent(), Validator.RenderParent);
-  app.put("/emp/parent", Validator.checkParent(), Validator.RenderParent);
+  app.post(
+    "/emp/parent",
+    Validator.checkParent(),
+    Validator.RenderParent,
+    Controller.ParentController.CreateParent
+  );
+  app.put(
+    "/emp/parent/:Id",
+    Validator.checkParent(),
+    Validator.RenderParent,
+    Controller.ParentController.UpdateParent
+  );
+  app.delete("/emp/parent/:Id", Controller.ParentController.RemoveParent);
+  app.get("/emp/parent", Controller.ParentController.AllParent);
 
   // Study for employee
-  app.post("/emp/study", Validator.checkStudy(), Validator.RenderStudy);
+  app.post("/emp/study", Controller.StudyController.CreateStudy);
+  app.put("/emp/upi_study/:Id", Controller.StudyController.UpdateImageStudent);
+  app.put("/emp/upt_study/:Id", Controller.StudyController.UpdateTextStudy);
+  app.delete("/emp/study/:Id", Controller.StudyController.RemoveStudy);
+  app.get("/emp/study", Controller.StudyController.DisplayStudy);
 
   // Training for employee
-  app.post("/emp/training", Validator.checkTrainig(), Validator.RenderTraining);
+  app.post("/emp/training", Controller.trainingController.CreateTraining);
+  app.put(
+    "/emp/upi_training/:Id",
+    Controller.trainingController.UpdateImageTraining
+  );
+  app.put(
+    "/emp/upt_training/:Id",
+    Controller.trainingController.UpdateTextTraining
+  );
+  app.delete("/emp/training/:Id", Controller.trainingController.RemoveTraining);
+  app.get("/emp/training", Controller.trainingController.DisplayTraining);
 
   // Gender
   app.post("/gender", Controller.GenderController.CreateGender);

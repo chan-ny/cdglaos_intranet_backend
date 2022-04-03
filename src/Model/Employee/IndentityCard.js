@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      ind_nocard: DataTypes.INTEGER(8),
+      ind_nocard: DataTypes.STRING(8),
       ind_approvedDate: DataTypes.DATE,
       ind_expiredDate: DataTypes.DATE,
       ind_location: DataTypes.STRING(120),

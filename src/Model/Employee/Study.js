@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     std_instilutional: DataTypes.STRING(150),
     std_faculty: DataTypes.STRING(150),
     std_major: DataTypes.STRING(150),
+    std_grade: DataTypes.STRING(12),
     std_Image: DataTypes.STRING(255),
     std_fromDate: DataTypes.DATE,
     std_toDate: DataTypes.DATE,
