@@ -1,4 +1,3 @@
-const AdminCTL = require("./AdminController");
 const UserController = require("./UserController");
 const authentication = require("../Helper/isAuthen");
 const ProvinceController = require("./ProvinceController");
@@ -18,7 +17,6 @@ const StudyController = require("./Employee/StudyController");
 const trainingController = require("./Employee/TrainningController");
 
 module.exports = {
-  AdminCTL,
   UserController,
   authentication,
   ProvinceController,

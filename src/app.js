@@ -23,7 +23,7 @@ require('./Helper/Passport')
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");
 });
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(port, IP, () => {
     console.log(`Server Running ${(IP, port)}`);
   });

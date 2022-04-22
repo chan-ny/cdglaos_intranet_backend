@@ -1,15 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-  const Role = sequelize.define(
-    "Role",
+  const Menu = sequelize.define(
+    "menu",
     {
-      r_Id: {
+      mnId: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
       },
-      r_name: DataTypes.STRING(100),
+      menu_name: DataTypes.STRING(100),
     },
-    { timestamps: false }
+    {
+      timestamps: false,
+    }
   );
-  return Role;
+  return Menu;
 };

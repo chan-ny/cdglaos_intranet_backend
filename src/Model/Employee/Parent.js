@@ -2,12 +2,12 @@ module.exports = (sequelize, DataTypes) => {
   const Parent = sequelize.define("Parent",
     {
       pr_Id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
       },
       employee_Id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER(6),
         allowNull: false,
       },
       pr_name: DataTypes.STRING(60),

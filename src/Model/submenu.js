@@ -1,23 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
-  const Ability = sequelize.define(
-    "Ability",
+  const Submenu = sequelize.define(
+    "submenu",
     {
-      at_Id: {
+      smId: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: false,
       },
-      employee_Id: {
+      menu_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      at_language: DataTypes.STRING(150),
-      at_speciafic: DataTypes.TEXT,
-      at_detail: DataTypes.TEXT,
+      sm_name: DataTypes.STRING(100),
     },
     {
       timestamps: false,
     }
   );
-  return Ability;
+  return Submenu;
 };

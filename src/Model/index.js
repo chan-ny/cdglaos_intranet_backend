@@ -24,10 +24,9 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.Role = require("../Model/Role")(sequelize, Sequelize);
-db.Admin = require("../Model/Admin")(sequelize, Sequelize);
 db.User = require("../Model/User")(sequelize, Sequelize);
 db.Gender = require("../Model/Gender")(sequelize, Sequelize);
-db.TypeEmployee = require("./Employee/TypeEmployee")(sequelize, Sequelize);
+db.Position = require("./Employee/Position")(sequelize, Sequelize);
 db.Province = require("../Model/Province")(sequelize, Sequelize);
 db.District = require("../Model/District")(sequelize, Sequelize);
 db.Employee = require("./Employee/Employee")(sequelize, Sequelize);
@@ -41,18 +40,22 @@ db.Ability = require("./Employee/Ability")(sequelize, Sequelize);
 db.Highschool = require("./Employee/Highschool")(sequelize, Sequelize);
 db.IndentityCard = require("./Employee/IndentityCard")(sequelize, Sequelize);
 db.Bookfimary = require("./Employee/BookFimaly")(sequelize, Sequelize);
-db.BornLocation = require("./Employee/bornLocation")(sequelize, Sequelize)
+db.BornLocation = require("./Employee/bornLocation")(sequelize, Sequelize);
+db.Menu = require("./menu")(sequelize, Sequelize);
+db.Submenu = require("./submenu")(sequelize, Sequelize);
+db.SubmenuUser = require("./submenu_user")(sequelize, Sequelize);
 
 // relationship
-// db.Role.hasMany(db.Admin, { foreignKey: 'role_Id' });
-db.Role.hasMany(db.Admin, { foreignKey: "role_Id" });
 db.Role.hasMany(db.User, { foreignKey: "role_Id" });
 db.Province.hasMany(db.District, { foreignKey: "province_Id" });
 db.TypeTraining.hasMany(db.Training, { foreignKey: "typetraining_Id" });
 //onther tb to hasMany tb employee
 db.User.hasOne(db.Employee, { foreignKey: "user_Id" });
+db.User.hasMany(db.SubmenuUser, { foreignKey: "user_Id" });
+db.Menu.hasMany(db.Submenu, { foreignKey: "menu_Id" });
+db.Submenu.hasMany(db.SubmenuUser, { foreignKey: "submenu_Id" });
 db.Gender.hasMany(db.Employee, { foreignKey: "gender_Id" });
-db.TypeEmployee.hasMany(db.Employee, { foreignKey: "typeEmployee_Id" });
+db.Position.hasMany(db.Employee, { foreignKey: "position_Id" });
 db.Province.hasMany(db.Employee, { foreignKey: "province_Id" });
 db.District.hasMany(db.Employee, { foreignKey: "district_Id" });
 db.Province.hasOne(db.BornLocation, { foreignKey: "province_Id" });
@@ -67,6 +70,6 @@ db.Employee.hasMany(db.Ability, { foreignKey: "employee_Id" });
 db.Employee.hasMany(db.Highschool, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.IndentityCard, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.Bookfimary, { foreignKey: "employee_Id" });
-db.Employee.hasOne(db.BornLocation, { foreignKey: "employee_Id"})
+db.Employee.hasOne(db.BornLocation, { foreignKey: "employee_Id" });
 
 module.exports = db;

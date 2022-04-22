@@ -1,29 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
-  const BornLocation = sequelize.define(
-    "BornLocation",
+  const SubmenuUser = sequelize.define(
+    "submenuUser",
     {
-      bl_Id: {
+      smu_Id: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
       },
-      employee_Id: {
+      submenu_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      province_Id: {
+      user_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      district_Id: {
-        type: DataTypes.INTEGER(6),
-        allowNull: false,
-      },
-      bl_village: DataTypes.STRING(120),
+      all: DataTypes.BOOLEAN,
+      view: DataTypes.BOOLEAN,
+      insert: DataTypes.BOOLEAN,
+      update: DataTypes.BOOLEAN,
+      delete: DataTypes.BOOLEAN,
     },
     {
       timestamps: false,
     }
   );
-  return BornLocation;
+  return SubmenuUser;
 };

@@ -2,20 +2,6 @@ const Controller = require("./Controller/index");
 const Validator = require("./validators/index");
 
 module.exports = (app) => {
-  // admin CTL
-  app.post(
-    "/regirter_admin",
-    Validator.CheckAdmin(),
-    Validator.RedenAdmin,
-    Controller.AdminCTL.RegisterAdmin
-  );
-  app.post("/login_admin", Controller.AdminCTL.LoginAdmin);
-  app.get(
-    "/index_admin",
-    Controller.authentication.isAuthenAdmin,
-    Controller.AdminCTL.index
-  );
-
   // User CTL
   app.post(
     "/regiter_user",
