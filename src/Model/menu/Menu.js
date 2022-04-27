@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Menu = sequelize.define(
-    "menu",
+    "Menu",
     {
       mnId: {
         type: DataTypes.INTEGER(6),

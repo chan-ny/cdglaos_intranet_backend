@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const IndentityCard = sequelize.define(
-    "IndentityCard",
+  const IdentityCard = sequelize.define(
+    "IdentityCard",
     {
       ind_Id: {
         type: DataTypes.INTEGER(6),
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      ind_nocard: DataTypes.STRING(8),
+      ind_cardNO: DataTypes.STRING(8),
       ind_approvedDate: DataTypes.DATE,
       ind_expiredDate: DataTypes.DATE,
       ind_location: DataTypes.STRING(120),
@@ -21,5 +21,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  return IndentityCard;
+  return IdentityCard;
 };

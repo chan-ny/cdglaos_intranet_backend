@@ -1,29 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
-  const BornLocation = sequelize.define(
-    "bornlocation",
+  const CEOS = sequelize.define(
+    "CEO",
     {
-      bl_Id: {
+      ceo_Id: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
       },
-      employee_Id: {
+      company_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      province_Id: {
+      user_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      district_Id: {
-        type: DataTypes.INTEGER(6),
-        allowNull: false,
-      },
-      bl_village: DataTypes.STRING(120),
+      ceo_name: DataTypes.STRING(60),
+      ceo_phone: DataTypes.STRING(12),
+      ceo_tell: DataTypes.STRING(12),
+      ceo_image: DataTypes.STRING(255),
     },
     {
       timestamps: false,
     }
   );
-  return BornLocation;
+  return CEOS;
 };

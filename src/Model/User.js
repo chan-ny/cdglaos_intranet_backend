@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      uId: {
+      uer_Id: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,

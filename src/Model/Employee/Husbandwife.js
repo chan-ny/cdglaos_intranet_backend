@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       hw_name: DataTypes.STRING(120),
       hw_worklocation: DataTypes.TEXT,
       hw_position: DataTypes.STRING(120),
+      hw_career: DataTypes.STRING(120),
       hw_numberChild: DataTypes.INTEGER(6),
     },
     {

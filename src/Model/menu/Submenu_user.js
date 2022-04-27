@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const SubmenuUser = sequelize.define(
-    "submenuUser",
+    "SubMenuUser",
     {
       smu_Id: {
         type: DataTypes.INTEGER(6),

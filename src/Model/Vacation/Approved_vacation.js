@@ -1,29 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-  const BornLocation = sequelize.define(
-    "bornlocation",
+  const Approved_offday = sequelize.define(
+    "Approved_vacation",
     {
-      bl_Id: {
+      appd_Id: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
       },
-      employee_Id: {
+      hr_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      province_Id: {
+      vacation_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      district_Id: {
-        type: DataTypes.INTEGER(6),
-        allowNull: false,
-      },
-      bl_village: DataTypes.STRING(120),
+      approved_on: DataTypes.STRING(60),
     },
     {
-      timestamps: false,
+      updatedAt: false,
     }
   );
-  return BornLocation;
+  return Approved_offday;
 };

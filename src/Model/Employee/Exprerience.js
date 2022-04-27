@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      epr_companyName: DataTypes.STRING(120),
+      epr_companyName: DataTypes.STRING(150),
       epr_fromdate: DataTypes.DATE,
       epr_toDate: DataTypes.DATE,
       epr_position: DataTypes.STRING(120),

@@ -1,20 +1,22 @@
 module.exports = (sequelize, DataTypes) => {
-  const Training = sequelize.define("Training", {
-    tn_Id: {
+  const Assets = sequelize.define("Assets", {
+    aId: {
       type: DataTypes.INTEGER(6),
       primaryKey: true,
       autoIncrement: true,
     },
-    employee_Id: {
+    typeassets_Id: {
       type: DataTypes.INTEGER(6),
       allowNull: false,
     },
-    typetraining_Id: {
+    hr_Id: {
       type: DataTypes.INTEGER(6),
       allowNull: false,
     },
-    tn_content: DataTypes.TEXT,
-    tn_image: DataTypes.STRING(255),
+    aTitle: DataTypes.STRING(200),
+    aserialnumber: DataTypes.STRING(100),
+    aContent: DataTypes.TEXT,
+    aImage: DataTypes.STRING(255),
   });
-  return Training;
+  return Assets;
 };

@@ -1,8 +1,8 @@
-module.exports = (sequelize, DataTypes) => {
-  const BornLocation = sequelize.define(
-    "bornlocation",
+module.exports = (sequlize, DataTypes) => {
+  const Useproduct = sequlize.define(
+    "Use_Product",
     {
-      bl_Id: {
+      up_Id: {
         type: DataTypes.INTEGER(6),
         primaryKey: true,
         autoIncrement: true,
@@ -11,19 +11,20 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      province_Id: {
+      storageproduct_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      district_Id: {
+      hr_Id: {
         type: DataTypes.INTEGER(6),
         allowNull: false,
       },
-      bl_village: DataTypes.STRING(120),
+      up_qty: DataTypes.INTEGER(12),
+      up_statue: DataTypes.STRING(15),
     },
     {
-      timestamps: false,
+      updatedAt: false,
     }
   );
-  return BornLocation;
+  return Useproduct;
 };
