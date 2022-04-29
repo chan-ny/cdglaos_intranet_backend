@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      gd_laoName: DataTypes.STRING(30),
-      gd_engName: DataTypes.STRING(30),
-      dg_status: DataTypes.STRING(15),
+      gd_laoname: DataTypes.STRING(30),
+      gd_engname: DataTypes.STRING(30),
+      gd_status: DataTypes.STRING(15),
     },
     {
       timestamps: false,

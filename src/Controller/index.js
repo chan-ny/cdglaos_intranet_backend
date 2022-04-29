@@ -1,8 +1,7 @@
 const UserController = require("./UserController");
 const authentication = require("../Helper/isAuthen");
-const ProvinceController = require("./ProvinceController");
+const ProvinceController = require("./Province_C");
 const TypeTrainigController = require("./TypeTrainingController");
-const GenderController = require("./GenderController");
 const TypeEmployeeController = require("./Employee/TypeEmployeeController");
 const EmployeeController = require("./Employee/EmployeeController");
 const AbilityController = require("./Employee/AbilityController");
@@ -15,13 +14,14 @@ const ParentController = require("./Employee/ParentController");
 const IndentiyCardController = require("./Employee/IndentityCardController");
 const StudyController = require("./Employee/StudyController");
 const trainingController = require("./Employee/TrainningController");
-
+const GendersContriller = require("./Gender_C");
+const DistrictController = require("./District_C");
+const CompanyController = require("./Company_C");
 module.exports = {
   UserController,
   authentication,
   ProvinceController,
   TypeTrainigController,
-  GenderController,
   TypeEmployeeController,
   EmployeeController,
   AbilityController,
@@ -34,4 +34,7 @@ module.exports = {
   IndentiyCardController,
   StudyController,
   trainingController,
+  GendersContriller,
+  DistrictController,
+  CompanyController
 };

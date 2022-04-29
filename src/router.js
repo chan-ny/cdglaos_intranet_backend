@@ -1,5 +1,6 @@
 const Controller = require("./Controller/index");
 const Validator = require("./validators/index");
+const RequestandResponse = require("./Request_Response/index");
 
 module.exports = (app) => {
   // User CTL
@@ -21,21 +22,33 @@ module.exports = (app) => {
     "/province",
     Validator.chaeckProvince(),
     Validator.RenderProvince,
-    Controller.ProvinceController.CreateProvince
+    RequestandResponse.Province.CreateProvince
   );
   app.put(
     "/province",
     Validator.chaeckProvince(),
     Validator.RenderProvince,
-    Controller.ProvinceController.UpdateProvince
+    RequestandResponse.Province.UpdateProvince
   );
-  app.delete("/province/:Id", Controller.ProvinceController.DeleteProvince);
-  app.get("/province", Controller.ProvinceController.AllProvince);
-  app.get("/pv_select", Controller.ProvinceController.SelectProvince);
+  app.delete("/province/:Id", RequestandResponse.Province.RemoveProvince);
+  app.get("/province", RequestandResponse.Province.AllProvince);
+  app.get("/pv_select/:Id", RequestandResponse.Province.GetProvince);
 
   // District CTL
-  app.post("/district", Validator.checkDistrict(), Validator.RenderDistrict);
-  app.put("/district", Validator.checkDistrict(), Validator.RenderDistrict);
+  app.post(
+    "/district",
+    Validator.checkDistrict(),
+    Validator.RenderDistrict,
+    RequestandResponse.District.CreateDistrict
+  );
+  app.put(
+    "/district",
+    Validator.checkDistrict(),
+    Validator.RenderDistrict,
+    RequestandResponse.District.UpdateDistrict
+  );
+  app.get("/district", RequestandResponse.District.AllDistrict);
+  app.get("/district/:Id", RequestandResponse.District.GetDistrict);
 
   //Type Training
   app.post(
@@ -246,9 +259,11 @@ module.exports = (app) => {
   app.get("/emp/training", Controller.trainingController.DisplayTraining);
 
   // Gender
-  app.post("/gender", Controller.GenderController.CreateGender);
-  app.put("/gender", Controller.GenderController.UpdateGender);
-  app.delete("/gender/:Id", Controller.GenderController.DeleteGender);
-  app.get("/gender", Controller.GenderController.AllGender);
-  app.get("/gd_select", Controller.GenderController.SelectGender);
+  app.post("/gender", RequestandResponse.Gender.createGender);
+  app.put("/gender", RequestandResponse.Gender.updateGender);
+  app.put("/disable_gender/:Id", RequestandResponse.Gender.disableGender);
+  app.get("/gender", RequestandResponse.Gender.getGender);
+
+  //company
+  app.post("/company", RequestandResponse.Company.CreateCompany);
 };
