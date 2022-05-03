@@ -1,4 +1,3 @@
-const { CheckAdmin, RedenAdmin } = require("./registerAdmin");
 const { CheckUser, RedenUser } = require("./registerUser");
 const { chaeckProvince, RenderProvince } = require("./validProvince");
 const { checkDistrict, RenderDistrict } = require("./validDistrict");
@@ -20,8 +19,6 @@ const { CheckHighschool, RenderHighschool } = require("./validHighschool");
 const { checkHW, RenderHW } = require("./validHusbandwife");
 const { checkParent, RenderParent } = require("./validParent");
 module.exports = {
-  CheckAdmin,
-  RedenAdmin,
   CheckUser,
   RedenUser,
   chaeckProvince,

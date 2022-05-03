@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     employee_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(12),
       allowNull: false,
     },
     ac_title: DataTypes.STRING(200),

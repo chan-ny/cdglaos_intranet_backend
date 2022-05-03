@@ -16,7 +16,7 @@ passport.use(
       try {
         const role = await Role.findOne({
           where: {
-            r_id: jwtPayload.role_Id,
+            role_id: jwtPayload.role_Id,
           },
         });
         if (!role) {

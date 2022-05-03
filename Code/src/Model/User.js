@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     "User",
     {
       uer_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       role_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       uemail: {

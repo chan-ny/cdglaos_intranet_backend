@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Welfare = sequelize.define("Welfare", {
     wf_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     hr_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     wf_title: DataTypes.STRING(200),

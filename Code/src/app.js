@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const Morgen = require("morgan");
 const { sequelize } = require("./Model");
+const middleware = require("./Helper/isAuthen");
 
 const port = process.env.PORT || 3100;
 const IP = "0.0.0.0";
@@ -16,9 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // cors access client
 app.use(cors());
 app.use("/images", express.static(path.join(__dirname, "public")));
-
-require("./router")(app);
 require("./Helper/Passport");
+
+app.use("/api", middleware, require("./Router/index"));
+// app.use("/api", require("./Router/index"));
 
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");

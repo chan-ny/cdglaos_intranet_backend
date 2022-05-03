@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
   const Assets = sequelize.define("Assets", {
     aId: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     typeassets_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     hr_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     aTitle: DataTypes.STRING(200),

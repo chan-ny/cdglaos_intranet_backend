@@ -1,4 +1,3 @@
-const res = require("express/lib/response");
 const controller = require("../Controller/index");
 const ceo = new controller.CEOcontroller();
 const company = new controller.CompanyController();

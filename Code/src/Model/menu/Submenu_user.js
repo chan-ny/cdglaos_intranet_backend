@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
     "SubMenuUser",
     {
       smu_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       submenu_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       user_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       all: DataTypes.BOOLEAN,

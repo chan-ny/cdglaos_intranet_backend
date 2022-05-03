@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Typeaccount = sequelize.define("typeaccount", {
     tac_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     employee_id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.STRING(12),
       allowNull: false,
     },
     tac_name: DataTypes.STRING(150),

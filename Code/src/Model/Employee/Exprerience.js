@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     "Experience",
     {
       epr_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       employee_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.STRING(12),
         allowNull: false,
       },
       epr_companyName: DataTypes.STRING(150),

@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     "IdentityCard",
     {
       ind_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       employee_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.STRING(12),
         allowNull: false,
       },
       ind_cardNO: DataTypes.STRING(8),

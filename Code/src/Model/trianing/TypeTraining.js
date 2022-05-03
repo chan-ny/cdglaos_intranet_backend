@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const TypeTraining = sequelize.define("Type_Training", {
     ttn_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },

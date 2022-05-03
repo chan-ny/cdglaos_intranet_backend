@@ -1,28 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define("Employee", {
     emp_Id: {
-      type: DataTypes.INTEGER(6),
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.STRING(12),
+      primaryKey: true
     },
     user_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     position_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     gender_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     province_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     district_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     emp_name: DataTypes.STRING(60),

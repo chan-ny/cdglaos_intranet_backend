@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
     "CEO",
     {
       ceo_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       company_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       user_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       ceo_name: DataTypes.STRING(60),

@@ -1,6 +1,6 @@
 const { District, sequelize } = require("../Model");
 const { QueryTypes } = require("sequelize");
-const Province_C = require("./Province_C");
+const Province_C = require("./ProvinceController");
 const provice = new Province_C();
 class Districts {
   province_id;

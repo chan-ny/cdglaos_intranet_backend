@@ -3,20 +3,20 @@ module.exports = (sequelize, DataTypes) => {
     "bornlocation",
     {
       bl_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       employee_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.STRING(12),
         allowNull: false,
       },
       province_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       district_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       bl_village: DataTypes.STRING(120),

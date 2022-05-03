@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Highschool = sequelize.define("Highschool", {
     hs_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     employee_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.STRING(12),
       allowNull: false,
     },
     hs_name: DataTypes.STRING(150),

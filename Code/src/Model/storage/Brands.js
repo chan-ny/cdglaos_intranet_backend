@@ -1,12 +1,12 @@
 module.exports = (sequlize, DataTypes) => {
   const Brands = sequlize.define("Brand", {
     bId: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     hr_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     b_name: DataTypes.STRING(120),

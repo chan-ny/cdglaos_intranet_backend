@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     "HusbandWife",
     {
       hw_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       employee_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.STRING(12),
         allowNull: false,
       },
       hw_name: DataTypes.STRING(120),

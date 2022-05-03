@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     "SubMenu",
     {
       smId: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: false,
       },
       menu_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       sm_name: DataTypes.STRING(100),

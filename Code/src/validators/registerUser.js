@@ -1,23 +1,9 @@
 const { body, validationResult } = require("express-validator");
-const { User } = require("../Model");
 
 const CheckUser = () => {
   return [
     body("role_Id").notEmpty().withMessage("Role is require"),
-    body("uemail")
-      .custom((value) => {
-        return User.findOne({
-          where: {
-            uemail: value,
-          },
-        }).then((admin) => {
-          if (admin) {
-            return Promise.reject("Email already is use");
-          }
-        });
-      })
-      .isEmail()
-      .withMessage("Email is require"),
+    body("uemail").isEmail().withMessage("Email is require"),
     body("ustatus").notEmpty().withMessage("Status is require"),
     body("upassowrd")
       .isLength({ min: 8 })

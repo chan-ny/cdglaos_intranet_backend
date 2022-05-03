@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
     "Approved_vacation",
     {
       appd_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       hr_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       vacation_Id: {
-        type: DataTypes.INTEGER(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       approved_on: DataTypes.STRING(60),

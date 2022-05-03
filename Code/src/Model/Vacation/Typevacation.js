@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Typeoffday = sequelize.define("Type_Vacation", {
     tod_Id: {
-      type: DataTypes.INTEGER(6),
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
