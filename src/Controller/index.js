@@ -17,6 +17,7 @@ const trainingController = require("./Employee/TrainningController");
 const GendersContriller = require("./Gender_C");
 const DistrictController = require("./District_C");
 const CompanyController = require("./Company_C");
+const CEOcontroller = require("./CEOController");
 module.exports = {
   UserController,
   authentication,
@@ -36,5 +37,6 @@ module.exports = {
   trainingController,
   GendersContriller,
   DistrictController,
-  CompanyController
+  CompanyController,
+  CEOcontroller,
 };

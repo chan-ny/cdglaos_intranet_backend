@@ -266,4 +266,11 @@ module.exports = (app) => {
 
   //company
   app.post("/company", RequestandResponse.Company.CreateCompany);
+  app.put("/company_img/:Id", RequestandResponse.Company.UpdateCompanyImage);
+  app.put("/company", RequestandResponse.Company.UpdateCompanyText);
+  app.get("/company_disaable/:Id", RequestandResponse.Company.DisableCompany);
+  app.put("/company_renew/:Id", RequestandResponse.Company.RenewCompany);
+
+  //chief Executive Officer
+  app.post("/ceo", RequestandResponse.ChiefExecutiveOfficer.CreateCEO);
 };

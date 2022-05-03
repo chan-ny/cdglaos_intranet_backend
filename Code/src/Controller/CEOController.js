@@ -1,10 +1,11 @@
-const { Company } = require("../Model");
-class Companys {
+const { CEOS } = require("../Model");
+
+class ChiefExecutiveOfficer {
   msg;
   //create
-  async createCompany(value, path) {
-    await Company.create({
-      cpn_name: value.cpn_name,
+  async createCEO(value) {
+    await CEOS.create({
+      company_Id: value.cpn_name,
       cpn_serialNumber: value.cpn_serialNumber,
       cpn_phone: value.cpn_phone,
       cpn_tell: value.cpn_tell,
@@ -18,7 +19,7 @@ class Companys {
         return (this.msg = {
           status: 200,
           msg: "Create Company is success",
-          rs: result,
+          rs: value,
         });
       })
       .catch((err) => {
@@ -104,21 +105,6 @@ class Companys {
     }
     return this.msg;
   }
-
-  async getCompany(Id) {
-    const company = await Company.findByPk(Id);
-    if (company) {
-      return (this.msg = {
-        status: 200,
-        rs: company,
-      });
-    } else {
-      return (this.msg = {
-        status: 404,
-        msg: "The Compnay Id is notfound",
-      });
-    }
-  }
 }
 
-module.exports = Companys;
+module.exports = ChiefExecutiveOfficer;
