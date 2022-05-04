@@ -6,7 +6,7 @@ const { Company } = require("../Model");
 
 module.exports = {
   async CreateCompany(req, res) {
-    up.path = "./src/public/images/company";
+    up.path = "./public/images/company";
     await up.uploadSingle(req, res, (err) => {
       if (err) {
         res.end("Error Upload file image");
@@ -22,8 +22,8 @@ module.exports = {
   async UpdateCompanyImage(req, res) {
     const company = await Company.findByPk(req.params.Id);
     if (company) {
-      await up.getUnlink("./src/public/images/company/" + company.cpn_logo);
-      up.path = "./src/public/images/company";
+      await up.getUnlink("./public/images/company/" + company.cpn_logo);
+      up.path = "./public/images/company";
       await up.uploadSingle(req, res, (err) => {
         if (err) {
           res.end("Error Upload file image");

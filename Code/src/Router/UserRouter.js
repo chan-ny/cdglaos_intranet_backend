@@ -12,5 +12,6 @@ router.post(
 );
 router.post("/login", Views.Users.Loginuser);
 router.get("/display", Views.Users.DisplayUser);
+router.put("/change_password", Views.Users.ChangePassword);
 
 module.exports = router;

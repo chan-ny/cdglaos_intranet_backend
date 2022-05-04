@@ -1,25 +1,17 @@
-const { CEOS } = require("../Model");
+const { CEOS, sequelize } = require("../Model");
+const { QueryTypes } = require("sequelize");
 
 class ChiefExecutiveOfficer {
   msg;
+
   //create
   async createCEO(value) {
-    await CEOS.create({
-      company_Id: value.cpn_name,
-      cpn_serialNumber: value.cpn_serialNumber,
-      cpn_phone: value.cpn_phone,
-      cpn_tell: value.cpn_tell,
-      cpn_content: value.cpn_content,
-      cpn_fromDate: value.cpn_fromDate,
-      cpn_endDate: value.cpn_endDate,
-      cpn_logo: path,
-      cpn_state: value.cpn_state,
-    })
+    await CEOS.create(value)
       .then((result) => {
         return (this.msg = {
           status: 200,
-          msg: "Create Company is success",
-          rs: value,
+          msg: "Create Chif Excecutive Officer is success",
+          rs: result,
         });
       })
       .catch((err) => {
@@ -30,79 +22,86 @@ class ChiefExecutiveOfficer {
       });
     return this.msg;
   }
+  // upload profile
+  async uploadProfile(Id, profile) {
+    const ceo = await CEOS.findByPk(Id);
+    if (ceo) {
+      await ceo
+        .update({
+          ceo_image: profile,
+        })
+        .then(() => {
+          return (this.msg = {
+            status: 200,
+            msg: "Update ceo profiel is success",
+          });
+        });
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "CEO Id is notfound",
+      });
+    }
+    return this.msg;
+  }
   //update
-  async updateCompanyText(value) {
-    const company = await Company.findByPk(value.cpn_Id);
-    if (company) {
-      await company.update(value).then(() => {
+  async updateCEO(Id, value) {
+    // require name, phone, tell
+    const ceo = await CEOS.findByPk(Id);
+    if (ceo) {
+      await ceo.update(value).then(() => {
         return (this.msg = {
           status: 200,
-          msg: "Update Company is success",
+          msg: "Update ceo content is success",
         });
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Company Id is not found",
+        msg: "CEO Id is notfound",
       });
     }
     return this.msg;
   }
-  //disable
-  async disableCompany(Id) {
-    const company = await Company.findByPk(Id);
-    if (company) {
-      await company
-        .update({
-          cpn_state: "inactive",
-        })
-        .then(() => {
-          return (this.msg = {
-            status: 200,
-            msg: "Disable company is success",
-          });
-        })
-        .catch((err) => {
-          return (this.msg = {
-            status: 500,
-            msg: err,
-          });
-        });
+  //get
+  async getCEO(Id) {
+    const ceo = await CEOS.findByPk(Id);
+    if (ceo) {
+      return (this.msg = {
+        status: 200,
+        msg: "find ceo profiel is success",
+        rs: ceo,
+      });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The company Id is notfound",
+        msg: "CEO Id is notfound",
       });
     }
-    return this.msg;
   }
-  //renew
-  async renewCompnany(Id, mDateTime) {
-    const company = await Company.findByPk(Id);
-    if (company) {
-      await company
-        .update({
-          cpn_endDate: mDateTime,
-          cpn_state: "active",
-        })
-        .then(() => {
-          return (this.msg = {
-            status: 200,
-            msg: "Renew company is success",
-          });
-        })
-        .catch((err) => {
-          return (this.msg = {
-            status: 500,
-            msg: err,
-          });
+  //all
+  async allCEO() {
+    await sequelize
+      .query(
+        "select CEOs.ceo_Id,Compnays.cpn_name,Compnays.cpn_serialNumber,Roles.role_name, CEOs.ceo_name,CEOs.ceo_tell,CEOs.ceo_image from CEOs" +
+          " inner join Compnays on CEOs.company_Id = Compnays.cpn_Id " +
+          " inner join Users on CEOs.user_Id = Users.uer_Id " +
+          " inner join Roles on Users.role_Id = Roles.role_Id ",
+        { type: QueryTypes.SELECT }
+      )
+      .then((result) => {
+        return (this.msg = {
+          status: 200,
+          counts: result.length,
+          rs: result,
         });
-    } else {
-      return (this.msg = {
-        status: 404,
-        msg: "The company Id is notfound",
+      })
+      .catch((err) => {
+        return (this.msg = {
+          status: 200,
+          msg: err,
+        });
       });
-    }
     return this.msg;
   }
 }

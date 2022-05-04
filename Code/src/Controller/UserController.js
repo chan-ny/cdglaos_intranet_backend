@@ -6,16 +6,17 @@ class Users {
   //regirter
   async registerUser(value) {
     await User.create(value)
-      .then(() => {
+      .then((result) => {
         return (this.msg = {
           status: 200,
           msg: "register User is success",
+          rs: result,
         });
       })
       .catch((err) => {
         return (this.msg = {
-          status: 200,
-          msg: err,
+          status: 500,
+          msg: err.parent.sqlMessage,
         });
       });
     return this.msg;
@@ -57,6 +58,45 @@ class Users {
         rs: result,
       });
     });
+    return this.msg;
+  }
+  //change password
+  async changePaqssword(value) {
+    const users = await User.findOne({
+      where: {
+        uemail: value.uemail,
+      },
+    });
+    if (!users) {
+      return (this.msg = {
+        status: 404,
+        msg: "Email is not found",
+      });
+    }
+    const isPassword = await users.comparePassword(value.upassowrd);
+    if (!isPassword) {
+      return (this.msg = {
+        status: 404,
+        msg: "Password is Incurrect",
+      });
+    } else {
+      await users
+        .update({
+          upassowrd: value.newpassword,
+        })
+        .then(() => {
+          return (this.msg = {
+            status: 200,
+            msg: "Change password is success",
+          });
+        })
+        .catch((err) => {
+          return (this.msg = {
+            status: 500,
+            msg: err,
+          });
+        });
+    }
     return this.msg;
   }
 }

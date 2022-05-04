@@ -5,7 +5,6 @@ const provice = new Province_C();
 class Districts {
   province_id;
   msg;
-
   //GetProvince
   async GetProvinces(Id) {
     //getProduct

@@ -1,9 +1,9 @@
-const JWT = require('jsonwebtoken') ;
-const config_db = require('../Config/config_db')
+const JWT = require("jsonwebtoken");
+const config_db = require("../config/config_db");
 module.exports = {
-    jwtCreate(token) {
-        return JWT.sign(token, config_db.authentication.JwtSecret, {
-            expiresIn: '8h'
-        })
-    }
-}
+  jwtCreate(token) {
+    return JWT.sign(token, config_db.authentication.JwtSecret, {
+      expiresIn: "8h",
+    });
+  },
+};

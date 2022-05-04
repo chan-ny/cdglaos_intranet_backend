@@ -23,4 +23,11 @@ module.exports = {
       });
     });
   },
+  ChangePassword(req, res) {
+    users.changePaqssword(req.body).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
 };

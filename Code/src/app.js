@@ -16,11 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // cors access client
 app.use(cors());
-app.use("/images", express.static(path.join(__dirname, "public")));
+
+// uri = http://127.0.0.1:3100/public/images/default_iamge.jpg
+app.use("/public", express.static(path.join(__dirname, "public")));
 require("./Helper/Passport");
 
-app.use("/api", middleware, require("./Router/index"));
-// app.use("/api", require("./Router/index"));
+// app.use("/api", middleware, require("./Router/index"));
+app.use("/api", require("./Router/index"));
 
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");

@@ -1,39 +1,52 @@
 const { Gender } = require("../Model");
 
 class Genders {
+  msg;
   //create
   async CreateGender(value) {
-    let messaage;
     await Gender.create(value)
       .then(() => {
-        messaage = "200";
+        return (this.msg = {
+          status: 200,
+          msg: "Create Gender is success",
+        });
       })
-      .catch(() => {
-        messaage = "501";
+      .catch((err) => {
+        return (this.msg = {
+          status: 501,
+          msg: err,
+        });
       });
-    return messaage;
+    return this.msg;
   }
   // update
   async UpdateGender(value) {
-    let messaage;
     const gender = await Gender.findByPk(value.gd_Id);
     if (gender) {
       await gender
         .update(value)
         .then(() => {
-          messaage = "200";
+          return (this.msg = {
+            status: 200,
+            msg: "Update Gender is success",
+          });
         })
-        .catch(() => {
-          messaage = "501";
+        .catch((err) => {
+          return (this.msg = {
+            status: 501,
+            msg: err,
+          });
         });
     } else {
-      messaage = "404";
+      return (this.msg = {
+        status: 404,
+        msg: "The Gender Id is notfound",
+      });
     }
-    return messaage;
+    return this.msg;
   }
   //disble
   async DisableGender(value) {
-    let messaage;
     const gender = await Gender.findByPk(value.gd_Id);
     if (gender) {
       await gender
@@ -41,27 +54,41 @@ class Genders {
           gd_status: "inactive",
         })
         .then(() => {
-          messaage = "200";
+          return (this.msg = {
+            status: 200,
+            msg: "Disable Gender is success",
+          });
         })
-        .catch(() => {
-          messaage = "501";
+        .catch((err) => {
+          return (this.msg = {
+            status: 501,
+            msg: err,
+          });
         });
     } else {
-      messaage = "404";
+      return (this.msg = {
+        status: 404,
+        msg: "The Gender Id is notfound",
+      });
     }
-    return messaage;
+    return this.msg;
   }
   //getGender
   async GetGender() {
-    let messaage;
-    await Gender.findAll().then((result) => {
-      if (result) {
-        messaage = result;
-      } else {
-        messaage = "500";
-      }
-    });
-    return messaage;
+    await Gender.findAll()
+      .then((result) => {
+        return (this.msg = {
+          status: 200,
+          rs: result,
+        });
+      })
+      .catch((err) => {
+        return (this.msg = {
+          status: 501,
+          msg: err,
+        });
+      });
+    return this.msg;
   }
 }
 
