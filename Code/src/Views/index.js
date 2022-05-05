@@ -4,6 +4,8 @@ const District = require("./DistrictView");
 const Company = require("./CompanyView");
 const ChiefExecutiveOfficer = require("./CEOView");
 const Users = require("./UserView");
+const position = require("./Staff/PositionView");
+const Employee = require("./Staff/EmployeeView");
 module.exports = {
   Gender,
   Province,
@@ -11,4 +13,6 @@ module.exports = {
   Company,
   ChiefExecutiveOfficer,
   Users,
+  position,
+  Employee,
 };

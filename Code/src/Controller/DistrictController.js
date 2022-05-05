@@ -137,6 +137,21 @@ class Districts {
     this.province_Id = undefined;
     return this.msg;
   }
+
+  async SelectDistrict(Id) {
+    const district = await District.findByPk(Id);
+    if (district) {
+      return (this.msg = {
+        status: 200,
+        rs: district,
+      });
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "The District Id is notfound",
+      });
+    }
+  }
 }
 
 module.exports = Districts;

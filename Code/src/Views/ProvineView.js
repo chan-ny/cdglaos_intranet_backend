@@ -31,7 +31,7 @@ module.exports = {
     });
   },
   async GetProvince(req, res) {
-    await provice.getProvince({ pv_Id: req.params.Id }).then((result) => {
+    await provice.getProvince(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

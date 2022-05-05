@@ -18,6 +18,8 @@ const { checkExperience, RenderExperience } = require("./validExperience");
 const { CheckHighschool, RenderHighschool } = require("./validHighschool");
 const { checkHW, RenderHW } = require("./validHusbandwife");
 const { checkParent, RenderParent } = require("./validParent");
+const { checkPosition, RenderPosition } = require("./PositionValid");
+const { checkStaff, RenderStaff } = require("./EmployeeValid");
 module.exports = {
   CheckUser,
   RedenUser,
@@ -41,4 +43,8 @@ module.exports = {
   RenderHW,
   checkParent,
   RenderParent,
+  checkPosition,
+  RenderPosition,
+  checkStaff,
+  RenderStaff,
 };

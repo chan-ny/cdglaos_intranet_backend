@@ -74,21 +74,19 @@ class Genders {
     return this.msg;
   }
   //getGender
-  async GetGender() {
-    await Gender.findAll()
-      .then((result) => {
-        return (this.msg = {
-          status: 200,
-          rs: result,
-        });
-      })
-      .catch((err) => {
-        return (this.msg = {
-          status: 501,
-          msg: err,
-        });
+  async GetGender(Id) {
+    const gender = await Gender.findByPk(Id);
+    if (gender) {
+      return (this.msg = {
+        status: 200,
+        rs: gender,
       });
-    return this.msg;
+    } else {
+      return (this.msg = {
+        status: 404,
+        rs: "The Gender Id is notfuond",
+      });
+    }
   }
 }
 

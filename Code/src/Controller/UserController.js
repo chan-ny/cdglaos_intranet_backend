@@ -5,20 +5,27 @@ class Users {
   msg;
   //regirter
   async registerUser(value) {
-    await User.create(value)
-      .then((result) => {
-        return (this.msg = {
-          status: 200,
-          msg: "register User is success",
-          rs: result,
+    if (value.uemail != "" && value.upassowrd != "" && value.ustatus != "") {
+      await User.create(value)
+        .then((result) => {
+          return (this.msg = {
+            status: 200,
+            msg: "register User is success",
+            rs: result,
+          });
+        })
+        .catch(() => {
+          return (this.msg = {
+            status: 500,
+            msg: "Can`t not Register User. please input again!!",
+          });
         });
-      })
-      .catch((err) => {
-        return (this.msg = {
-          status: 500,
-          msg: err.parent.sqlMessage,
-        });
+    } else {
+      return (this.msg = {
+        status: 400,
+        msg: "value User is invalid ",
       });
+    }
     return this.msg;
   }
 

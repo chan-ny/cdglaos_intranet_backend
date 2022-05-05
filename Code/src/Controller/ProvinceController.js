@@ -1,6 +1,7 @@
 const { Province } = require("../Model");
 
 class Provinces {
+  msg;
   //create
   async createProvince(value) {
     const provice = await Province.create(value)
@@ -105,29 +106,19 @@ class Provinces {
     return provice;
   }
   //select province
-  async getProvince(value) {
-    const provice = await Province.findByPk(value.pv_Id)
-      .then((result) => {
-        if (result) {
-          return {
-            status: 200,
-            msg: "get vaalue Product",
-            rs: result,
-          };
-        } else {
-          return {
-            status: 404,
-            msg: "the Province Id is notfound",
-          };
-        }
-      })
-      .catch((err) => {
-        return {
-          status: 501,
-          msg: err,
-        };
+  async getProvince(Id) {
+    const provice = await Province.findByPk(Id);
+    if (provice) {
+      return (this.msg = {
+        status: 200,
+        rs: provice,
       });
-    return provice;
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "The province Id is notfound",
+      });
+    }
   }
 }
 

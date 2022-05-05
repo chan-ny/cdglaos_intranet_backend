@@ -24,7 +24,7 @@ module.exports = {
     });
   },
   async getGender(req, res) {
-    gender.GetGender().then((result) => {
+    gender.GetGender(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });
