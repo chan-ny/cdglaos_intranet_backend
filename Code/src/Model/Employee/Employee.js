@@ -2,9 +2,13 @@ module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define("Employee", {
     emp_Id: {
       type: DataTypes.STRING(12),
-      primaryKey: true
+      primaryKey: true,
     },
     user_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    company_Id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

@@ -107,6 +107,7 @@ db.Evaluation.belongsTo(db.HR, { foreignKey: "hr_Id" });
 
 //ceo
 db.Company.hasOne(db.CEOS, { foreignKey: "company_Id" });
+db.Company.hasMany(db.Employee, { foreignKey: "company_Id" });
 db.CEOS.belongsTo(db.User, { foreignKey: "user_Id" });
 
 //Humen resource
@@ -147,6 +148,7 @@ db.Employee.hasMany(db.Highschool, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.IdentityCard, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.Bookfimary, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.BornLocation, { foreignKey: "employee_Id" });
+db.Employee.hasOne(db.HR, { foreignKey: "employee_Id" });
 db.Employee.hasMany(db.Customer, { foreignKey: "employee_Id" });
 
 module.exports = db;

@@ -6,6 +6,7 @@ const CEOcontroller = require("./CEOController");
 const Usercontroller = require("./UserController");
 const StaffController = require("./Staff/EmployeeController");
 const PositionController = require("./Staff/PositionController");
+const HumanResource = require("./Staff/HRController");
 module.exports = {
   ProvinceController,
   GendersContriller,
@@ -15,4 +16,5 @@ module.exports = {
   Usercontroller,
   StaffController,
   PositionController,
+  HumanResource,
 };

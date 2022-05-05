@@ -9,5 +9,6 @@ router.use("/company", require("./CompanyRouter"));
 router.use("/ceo", require("./CEORouter"));
 router.use("/position", require("./Staff/PositionRouter"));
 router.use("/employee", require("./Staff/EmployeeRouter"));
+router.use("/hr", require("./Staff/HumanResourceRouter"));
 
 module.exports = router;
