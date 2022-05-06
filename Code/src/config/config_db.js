@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "127.0.0.1",
-  PORT: 3306,
+  HOST: "150.95.82.134",
+  PORT: 92,
   USER: "root",
-  PASSWORD: "",
+  PASSWORD: "cdglaos@234",
   DB: "intranet_db",
   dialect: "mysql",
   pool: {

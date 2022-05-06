@@ -27,12 +27,12 @@ app.use("/api", require("./Router/index"));
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");
 });
-sequelize.sync({ force: true }).then(() => {
-  app.listen(port, IP, () => {
-    console.log(`Server Running ${(IP, port)}`);
-  });
-});
-
-// app.listen(port, IP, () => {
-//   console.log(`Server Running ${(IP, port)}`);
+// sequelize.sync({ force: true }).then(() => {
+//   app.listen(port, IP, () => {
+//     console.log(`Server Running ${(IP, port)}`);
+//   });
 // });
+
+app.listen(port, IP, () => {
+  console.log(`Server Running ${(IP, port)}`);
+});
