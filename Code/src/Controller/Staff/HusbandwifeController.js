@@ -45,6 +45,7 @@ class Husbandwifes {
         msg: "The HusbandWife Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -72,10 +73,11 @@ class Husbandwifes {
         z,
       });
     }
+    return this.msg;
   }
   //get
   async getHW(employee_Id) {
-    const husbandwife = await HusbandWife.findOne({
+    const husbandwife = await HusbandWife.findAll({
       where: {
         employee_Id: employee_Id,
       },

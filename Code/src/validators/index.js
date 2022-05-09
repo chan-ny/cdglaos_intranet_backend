@@ -23,7 +23,13 @@ const { checkStaff, RenderStaff } = require("./EmployeeValid");
 const { checkCompany, RenderCompany } = require("./CompanyValid");
 const { checkCEO, RenderCEO } = require("./CEOValid");
 const { checkBookfamily, RenderBookfamily } = require("./BookfamiltValid");
+const {
+  checkIdentityCard,
+  RenderIdentityCard,
+} = require("./IdentityCardValid");
 module.exports = {
+  checkIdentityCard,
+  RenderIdentityCard,
   checkBookfamily,
   RenderBookfamily,
   checkCEO,

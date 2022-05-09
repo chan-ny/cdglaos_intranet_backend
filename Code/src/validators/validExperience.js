@@ -2,7 +2,7 @@ const { body, check, validationResult } = require("express-validator");
 
 const checkExperience = () => {
   return [
-    body("employee_Id").isNumeric().withMessage("Employee Id must be Number"),
+    body("employee_Id").notEmpty().withMessage("Employee Id must be Number"),
     body("epr_companyName").notEmpty().withMessage("Compant name is require"),
     check("epr_fromdate")
       .isISO8601()

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { IdentityCard } = require("../../Model");
 
 class Identirycards {
@@ -74,6 +75,7 @@ class Identirycards {
         msg: "The Identitycard Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -86,6 +88,7 @@ class Identirycards {
           return (this.msg = {
             status: 200,
             msg: "Remove Identitycard is success",
+            rs: identitycard,
           });
         })
         .catch((err) => {
@@ -101,12 +104,15 @@ class Identirycards {
         z,
       });
     }
+    return this.msg;
   }
   //get
   async getIdentitycard(employee_Id) {
     const identitycard = await IdentityCard.findOne({
       where: {
-        employee_Id: employee_Id,
+        employee_Id: {
+          [Op.eq]: employee_Id,
+        },
       },
     });
     if (identitycard) {

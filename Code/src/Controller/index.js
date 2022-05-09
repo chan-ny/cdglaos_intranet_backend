@@ -15,7 +15,9 @@ const IdentitycardController = require("./Staff/IdentityCardController");
 const ExperienceController = require("./Staff/ExperienceController");
 const StudyController = require("./Staff/StudyController");
 const AblityController = require("./Staff/AbilityController");
+const HusbandwifeController = require("./Staff/HusbandwifeController");
 module.exports = {
+  HusbandwifeController,
   AblityController,
   StudyController,
   ExperienceController,

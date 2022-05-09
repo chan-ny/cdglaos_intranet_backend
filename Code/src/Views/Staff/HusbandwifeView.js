@@ -1,14 +1,14 @@
 const controller = require("../../Controller/index");
-const highschool = new controller.HighSchoolController();
+const hw = new controller.HusbandwifeController();
 const staff = new controller.StaffController();
 
 module.exports = {
-  CreateHS(req, res) {
+  CreateHW(req, res) {
     staff.selectEmployee(req.body.employee_Id).then((result) => {
       if (result.status == 200) {
-        highschool.createHS(req.body).then((hs) => {
-          res.status(hs.status).send({
-            ...hs,
+        hw.createHW(req.body).then((rs) => {
+          res.status(rs.status).send({
+            ...rs,
           });
         });
         return;
@@ -18,12 +18,12 @@ module.exports = {
       });
     });
   },
-  UpdateHS(req, res) {
+  UpdateHW(req, res) {
     staff.selectEmployee(req.body.employee_Id).then((result) => {
       if (result.status == 200) {
-        highschool.updateHS(req.params.Id, req.body).then((hs) => {
-          res.status(hs.status).send({
-            ...hs,
+        hw.updateHW(req.params.Id, req.body).then((result) => {
+          res.status(result.status).send({
+            ...result,
           });
         });
         return;
@@ -33,15 +33,15 @@ module.exports = {
       });
     });
   },
-  RemoveHS(req, res) {
-    highschool.removeHS(req.params.Id).then((result) => {
+  RemoveHw(req, res) {
+    hw.removeHW(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });
     });
   },
-  GetHS(req, res) {
-    highschool.getHS(req.body.employee_Id).then((result) => {
+  GetHW(req, res) {
+    hw.getHW(req.body.employee_Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

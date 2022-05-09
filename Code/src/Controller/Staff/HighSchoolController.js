@@ -45,6 +45,7 @@ class HighSchools {
         msg: "The HighSchool Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -71,6 +72,7 @@ class HighSchools {
         msg: "The HighSchool Id is notfound",
       });
     }
+    return this.msg;
   }
   //get
   async getHS(employee_Id) {

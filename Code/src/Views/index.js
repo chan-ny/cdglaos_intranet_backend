@@ -10,7 +10,15 @@ const HumanResource = require("./Staff/HumanResourceView");
 const Ability = require("./Staff/AbilityView");
 const Bookfamily = require("./Staff/BookfamilyView");
 const Bornlocation = require("./Staff/BornlocationView");
+const Experience = require("./Staff/ExperienceView");
+const Highschool = require("./Staff/HighSchoolView");
+const Husbandwife = require("./Staff/HusbandwifeView");
+const Identitycard = require("./Staff/IdentityCardView");
 module.exports = {
+  Identitycard,
+  Husbandwife,
+  Highschool,
+  Experience,
   Bornlocation,
   Bookfamily,
   Ability,

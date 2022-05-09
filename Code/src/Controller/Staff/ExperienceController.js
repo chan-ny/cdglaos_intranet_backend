@@ -45,6 +45,7 @@ class Experiences {
         msg: "The Experience Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -69,9 +70,9 @@ class Experiences {
       return (this.msg = {
         status: 404,
         msg: "The Experience Id is notfound",
-        z,
       });
     }
+    return this.msg;
   }
   //get
   async getExperience(employee_Id) {
@@ -80,18 +81,8 @@ class Experiences {
         employee_Id: employee_Id,
       },
       order: [["epr_Id", "DESC"]],
-      attibutes: [
-        "epr_Id",
-        "epr_companyName",
-        "epr_fromdate",
-        "epr_toDate",
-        "epr_position",
-        "epr_salary",
-        "epr_detail",
-      ],
-      include: [{ model: Employee, as: "Employees", attibutes: ["emp_Id"] }],
     });
-    if (experience) {
+    if (experience.length != 0) {
       return (this.msg = {
         status: 200,
         rs: experience,

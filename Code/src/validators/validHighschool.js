@@ -2,7 +2,7 @@ const { body, check, validationResult } = require("express-validator");
 
 const CheckHighschool = () => {
   return [
-    body("employee_Id").isNumeric().withMessage("Employee Id must be Number"),
+    body("employee_Id").notEmpty().withMessage("Employee Id must be Number"),
     body("hs_name").notEmpty().withMessage("High School name is require"),
     check("hs_fromDate")
       .isISO8601()
