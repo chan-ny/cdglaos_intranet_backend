@@ -17,5 +17,7 @@ router.use("/experience", require("./Staff/ExperienceRouter"));
 router.use("/highschool", require("./Staff/HighSchoolRouter"));
 router.use("/husbandwife", require("./Staff/HusbandwifeRouter"));
 router.use("/identitycard", require("./Staff/IdentityCardRouter"));
+router.use("/parent", require("./Staff/ParentRouter"));
+router.use("/study", require("./Staff/StudyRouter"));
 
 module.exports = router;

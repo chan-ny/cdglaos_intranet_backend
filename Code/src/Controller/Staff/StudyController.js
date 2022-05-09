@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Study } = require("../../Model");
 
 class Studies {
@@ -74,6 +75,7 @@ class Studies {
         msg: "The Study Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -101,17 +103,21 @@ class Studies {
         z,
       });
     }
+    return this.msg;
   }
   //get
   async getStudy(employee_Id) {
-    const study = await Study.findOne({
+    const study = await Study.findAll({
       where: {
-        employee_Id: employee_Id,
+        employee_Id: {
+          [Op.eq]: employee_Id,
+        },
       },
     });
-    if (study) {
+    if (study.length != 0) {
       return (this.msg = {
         status: 200,
+        counts: study.length,
         rs: study,
       });
     } else {
@@ -124,7 +130,7 @@ class Studies {
   //select
   async selectStudy(Id) {
     const study = await Study.findByPk(Id);
-    if (study) {
+    if (study.length != 0) {
       return (this.msg = {
         status: 200,
         rs: study,

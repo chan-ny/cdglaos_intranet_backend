@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Parent } = require("../../Model");
 
 class Parnets {
@@ -45,10 +46,11 @@ class Parnets {
         msg: "The Parnet Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
-  async removeHS(Id) {
+  async removeParent(Id) {
     const parent = await Parent.findByPk(Id);
     if (parent) {
       await parent
@@ -71,15 +73,18 @@ class Parnets {
         msg: "The Parnet Id is notfound",
       });
     }
+    return this.msg;
   }
   //get
-  async getHS(employee_Id) {
-    const parent = await Parent.findOne({
+  async getParent(employee_Id) {
+    const parent = await Parent.findAll({
       where: {
-        employee_Id: employee_Id,
+        employee_Id: {
+          [Op.eq]: employee_Id,
+        },
       },
     });
-    if (parent) {
+    if (parent.length != 0) {
       return (this.msg = {
         status: 200,
         rs: parent,

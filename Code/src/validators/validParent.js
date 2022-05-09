@@ -2,7 +2,7 @@ const { body, validationResult } = require("express-validator");
 
 const checkParent = () => {
   return [
-    body("employee_Id").isNumeric().withMessage("Employee Id must be Number"),
+    body("employee_Id").notEmpty().withMessage("Employee Id must be Number"),
     body("pr_name").notEmpty().withMessage("Name is require"),
     body("pr_age").notEmpty().withMessage("Age is require"),
     body("pr_career").notEmpty().withMessage("Career is require"),

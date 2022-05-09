@@ -27,7 +27,10 @@ const {
   checkIdentityCard,
   RenderIdentityCard,
 } = require("./IdentityCardValid");
+const { checkStudy, RenderStudy } = require("./StudyValid");
 module.exports = {
+  checkStudy,
+  RenderStudy,
   checkIdentityCard,
   RenderIdentityCard,
   checkBookfamily,
