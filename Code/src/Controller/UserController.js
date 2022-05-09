@@ -10,7 +10,7 @@ class Users {
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "register User is success",
+            msg: "Registeris User is success",
             rs: result,
           });
         })
@@ -49,20 +49,28 @@ class Users {
         msg: "Password is incurrect",
       });
     }
+
     const userJSON = users.toJSON();
     return (this.msg = {
       status: 200,
-      result: userJSON,
+      users: userJSON.uemail,
       token: jwtCreate(userJSON), // create Token on User
     });
   }
   // all
   async displayUser() {
     await User.findAll().then((result) => {
+      let new_list = result.map(function (obj) {
+        return {
+          id: obj.uer_Id,
+          email: obj.uemail,
+          status: obj.ustatus,
+        };
+      });
       return (this.msg = {
         status: 200,
         count: result.length,
-        rs: result,
+        rs: new_list,
       });
     });
     return this.msg;

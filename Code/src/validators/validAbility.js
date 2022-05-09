@@ -2,11 +2,7 @@ const { body, validationResult } = require("express-validator");
 
 const checkAbility = () => {
   return [
-    body("employee_Id")
-      .notEmpty()
-      .withMessage("Employee Id is requre")
-      .isNumeric()
-      .withMessage("Employee Id must be Number"),
+    body("employee_Id").notEmpty().withMessage("Employee Id is requre"),
     body("at_language").notEmpty().withMessage("Language is require"),
     body("at_speciafic").notEmpty().withMessage("Speciafic is require"),
   ];
@@ -19,7 +15,7 @@ function RenderAbility(req, res, next) {
       err: err.array(),
     });
   }
-  next()
+  next();
 }
 
 module.exports = {

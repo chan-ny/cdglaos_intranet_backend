@@ -20,7 +20,16 @@ const { checkHW, RenderHW } = require("./validHusbandwife");
 const { checkParent, RenderParent } = require("./validParent");
 const { checkPosition, RenderPosition } = require("./PositionValid");
 const { checkStaff, RenderStaff } = require("./EmployeeValid");
+const { checkCompany, RenderCompany } = require("./CompanyValid");
+const { checkCEO, RenderCEO } = require("./CEOValid");
+const { checkBookfamily, RenderBookfamily } = require("./BookfamiltValid");
 module.exports = {
+  checkBookfamily,
+  RenderBookfamily,
+  checkCEO,
+  RenderCEO,
+  checkCompany,
+  RenderCompany,
   CheckUser,
   RedenUser,
   chaeckProvince,

@@ -1,16 +1,15 @@
-const { Op } = require("sequelize");
-const { Bookfimary } = require("../../Model");
+const { Study } = require("../../Model");
 
-class Bookfamilies {
+class Studies {
   msg;
   //create
-  async createFamily(value) {
-    await Bookfimary.create(value)
+  async createStudy(value) {
+    await Study.create(value)
       .then((result) => {
         return (this.msg = {
           status: 200,
-          msg: "Create Bookfamily is success",
-          rs: result,
+          msg: "Create Study is success",
+          re: result,
         });
       })
       .catch((err) => {
@@ -22,17 +21,17 @@ class Bookfamilies {
     return this.msg;
   }
   //modify image
-  async modifyImage_family(Id, pahtImage) {
-    const bookfamily = await Bookfimary.findByPk(Id);
-    if (bookfamily) {
-      await bookfamily
+  async modifyImage_Study(Id, pahtImage) {
+    const study = await Study.findByPk(Id);
+    if (study) {
+      await study
         .update({
-          bf_image: pahtImage,
+          std_Image: pahtImage,
         })
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "Update Bookfamily Image is success",
+            msg: "Update Study Image is success",
             rs: result,
           });
         })
@@ -45,21 +44,21 @@ class Bookfamilies {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Bookfamily Id is notfound",
+        msg: "The Study Id is notfound",
       });
     }
     return this.msg;
   }
-  // update
-  async updateFamily(Id, value) {
-    const bookfamily = await Bookfimary.findByPk(Id);
-    if (bookfamily) {
-      await bookfamily
+  //update
+  async updateStudy(Id, value) {
+    const study = await Study.findByPk(Id);
+    if (study) {
+      await study
         .update(value)
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "Update Bookfamily is success",
+            msg: "Update Study is success",
             rs: result,
           });
         })
@@ -72,21 +71,21 @@ class Bookfamilies {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Bookfamily Id is notfound",
+        msg: "The Study Id is notfound",
       });
     }
-    return this.msg;
   }
+
   //remove
-  async removeBoofamily(Id) {
-    const bookfamily = await Bookfimary.findByPk(Id);
-    if (bookfamily) {
-      await bookfamily
+  async removeStudy(Id) {
+    const study = await Study.findByPk(Id);
+    if (study) {
+      await study
         .destroy()
-        .then((result) => {
+        .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Remove bookfamily is success",
+            msg: "Remove Study is success",
           });
         })
         .catch((err) => {
@@ -98,47 +97,45 @@ class Bookfamilies {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Bookfamily Id is notfound",
+        msg: "The Study Id is notfound",
+        z,
       });
     }
-    return this.msg;
   }
   //get
-  async getBookfimaly(employee_Id) {
-    const bookfamily = await Bookfimary.findOne({
+  async getStudy(employee_Id) {
+    const study = await Study.findOne({
       where: {
-        employee_Id: {
-          [Op.eq]: employee_Id,
-        },
+        employee_Id: employee_Id,
       },
     });
-    if (bookfamily) {
+    if (study) {
       return (this.msg = {
         status: 200,
-        rs: bookfamily,
+        rs: study,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Bookfamily Id is notfound",
+        msg: "The Study Id is notfound",
       });
     }
   }
   //select
-  async selectBookfimaly(Id) {
-    const bookfamily = await Bookfimary.findByPk(Id);
-    if (bookfamily) {
+  async selectStudy(Id) {
+    const study = await Study.findByPk(Id);
+    if (study) {
       return (this.msg = {
         status: 200,
-        rs: bookfamily,
+        rs: study,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Bookfamily Id is notfound",
+        msg: "The Study Id is notfound",
       });
     }
   }
 }
 
-module.exports = Bookfamilies;
+module.exports = Studies;

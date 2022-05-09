@@ -11,7 +11,18 @@ module.exports = {
             ...rs,
           });
         });
+        return;
       }
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
+  GetHumanResource(req, res) {
+    hr.getHR(req.params.Id).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
     });
   },
 };

@@ -5,18 +5,11 @@ const company = new controller.CompanyController();
 const { Company } = require("../Model");
 
 module.exports = {
-  async CreateCompany(req, res) {
-    up.path = "./public/images/company";
-    await up.uploadSingle(req, res, (err) => {
-      if (err) {
-        res.end("Error Upload file image");
-      } else {
-        company.createCompany(req.body, up.pathImage).then((result) => {
-          res.status(result.status).send({
-            ...result,
-          });
-        });
-      }
+  CreateCompany(req, res) {
+    company.createCompany(req.body).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
     });
   },
   async UpdateCompanyImage(req, res) {
@@ -47,22 +40,29 @@ module.exports = {
       });
     }
   },
-  async UpdateCompanyText(req, res) {
+  UpdateCompanyText(req, res) {
     company.updateCompanyText(req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });
     });
   },
-  async DisableCompany(req, res) {
+  DisableCompany(req, res) {
     company.disableCompany(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });
     });
   },
-  async RenewCompany(req, res) {
+  RenewCompany(req, res) {
     company.renewCompnany(req.params.Id, req.query.mDateTime).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
+  AllCompany(req, res) {
+    company.allCompany().then((result) => {
       res.status(result.status).send({
         ...result,
       });

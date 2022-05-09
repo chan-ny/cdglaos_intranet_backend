@@ -45,6 +45,7 @@ class Bornlocations {
         msg: "The BornLocation Id is notfound",
       });
     }
+    return this.msg;
   }
 
   //remove
@@ -71,6 +72,7 @@ class Bornlocations {
         msg: "The BornLocation Id is notfound",
       });
     }
+    return this.msg;
   }
   //get
   async getBL(employee_Id) {
@@ -79,6 +81,22 @@ class Bornlocations {
         employee_Id: employee_Id,
       },
     });
+    if (bornlocation) {
+      return (this.msg = {
+        status: 200,
+        rs: bornlocation,
+      });
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "The Bornlocation Id is notfound",
+      });
+    }
+  }
+
+  //select
+  async selectBL(Id) {
+    const bornlocation = await BornLocation.findByPk(Id);
     if (bornlocation) {
       return (this.msg = {
         status: 200,

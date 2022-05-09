@@ -2,7 +2,7 @@ const { Company } = require("../Model");
 class Companys {
   msg;
   //create
-  async createCompany(value, path) {
+  async createCompany(value) {
     await Company.create({
       cpn_name: value.cpn_name,
       cpn_serialNumber: value.cpn_serialNumber,
@@ -11,7 +11,7 @@ class Companys {
       cpn_content: value.cpn_content,
       cpn_fromDate: value.cpn_fromDate,
       cpn_endDate: value.cpn_endDate,
-      cpn_logo: path,
+      cpn_logo: "default_iamge.jpg",
       cpn_state: value.cpn_state,
     })
       .then((result) => {
@@ -118,6 +118,24 @@ class Companys {
         msg: "The Compnay Id is notfound",
       });
     }
+  }
+  // all
+  async allCompany() {
+    await Company.findAll()
+      .then((result) => {
+        return (this.msg = {
+          status: 200,
+          counts: result.length,
+          rs: result,
+        });
+      })
+      .catch((err) => {
+        return (this.msg = {
+          status: 500,
+          msg: err,
+        });
+      });
+    return this.msg;
   }
 }
 

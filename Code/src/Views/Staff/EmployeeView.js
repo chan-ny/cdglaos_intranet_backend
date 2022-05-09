@@ -18,7 +18,11 @@ module.exports = {
   async CreateEmployee(req, res) {
     ///fine max Id of staff
     await staff.MaxID().then((max) => {
-      autoId = max.rs.dataValues.emp_Id;
+      if (max.rs != null) {
+        autoId = max.rs.dataValues.emp_Id;
+      } else {
+        autoId = "ST00000";
+      }
     });
     let fk = {
       user_Id: "",

@@ -8,7 +8,7 @@ class Districts {
   //GetProvince
   async GetProvinces(Id) {
     //getProduct
-    await provice.getProvince({ pv_Id: Id }).then((result) => {
+    await provice.getProvince(Id).then((result) => {
       if (result.status == 200) {
         this.province_Id = result.rs.dataValues.pv_Id;
       } else {

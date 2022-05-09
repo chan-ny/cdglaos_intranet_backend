@@ -1,5 +1,5 @@
 const { Employee } = require("../../Model");
-
+const { Op } = require("sequelize");
 class Staff {
   msg;
   //create
@@ -43,22 +43,33 @@ class Staff {
   }
   //select
   async selectEmployee(Id) {
-    const staff = await Employee.findOne({
+    await Employee.findOne({
       where: {
-        emp_Id: Id,
+        emp_Id: {
+          [Op.eq]: Id,
+        },
       },
-    });
-    if (staff) {
-      return (this.msg = {
-        status: 200,
-        rs: staff,
+    })
+      .then((result) => {
+        if (result) {
+          return (this.msg = {
+            status: 200,
+            rs: result,
+          });
+        } else {
+          return (this.msg = {
+            status: 404,
+            msg: "The Employee Id is notfound",
+          });
+        }
+      })
+      .catch((err) => {
+        return (this.msg = {
+          status: 500,
+          msg: err,
+        });
       });
-    } else {
-      return (this.msg = {
-        status: 404,
-        msg: "The Employee Id is notfound",
-      });
-    }
+    return this.msg;
   }
 
   //modify image
