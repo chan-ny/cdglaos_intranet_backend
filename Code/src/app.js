@@ -27,7 +27,7 @@ app.use("/api", require("./Router/index"));
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");
 });
-// sequelize.sync({ force: true }).then(() => {
+// sequelize.sync({ force: false }).then(() => {
 //   app.listen(port, IP, () => {
 //     console.log(`Server Running ${(IP, port)}`);
 //   });

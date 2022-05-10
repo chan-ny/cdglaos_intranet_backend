@@ -1,15 +1,14 @@
-const { Op } = require("sequelize");
-const { TypeLaw } = require("../../Model");
+const { Typeassets } = require("../../Model");
 
-class TypeLaws {
+class TypeAssets {
   msg;
   //create
-  async createTypeLaw(value) {
-    await TypeLaw.create(value)
+  async createTypeassets(value) {
+    await Typeassets.create(value)
       .then((result) => {
         return (this.msg = {
           status: 200,
-          msg: "Create TypeLaw is success",
+          msg: "Create Typeassets is success",
           re: result,
         });
       })
@@ -22,15 +21,15 @@ class TypeLaws {
     return this.msg;
   }
   //update
-  async updateTypeLaw(Id, value) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
-      await typelaw
+  async updateTypeassets(Id, value) {
+    const type_assets = await Typeassets.findByPk(Id);
+    if (type_assets) {
+      await type_assets
         .update(value)
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "Update TypeLaw is success",
+            msg: "Update Typeassets is success",
             rs: result,
           });
         })
@@ -43,22 +42,22 @@ class TypeLaws {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Typeassets Id is notfound",
       });
     }
     return this.msg;
   }
 
   //remove
-  async removeTypeLaw(Id) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
-      await typelaw
+  async removeTypeassets(Id) {
+    const type_assets = await Typeassets.findByPk(Id);
+    if (type_assets) {
+      await type_assets
         .destroy()
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Remove TypeLaw is success",
+            msg: "Remove Typeassets is success",
           });
         })
         .catch((err) => {
@@ -70,49 +69,48 @@ class TypeLaws {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Typeassets Id is notfound",
         z,
       });
     }
     return this.msg;
   }
   //get
-  async getTypeLaw(hr_Id) {
-    const typelaw = await TypeLaw.findAll({
+  async getTypeassets(hr_Id) {
+    const type_assets = await Typeassets.findAll({
       where: {
         hr_Id: {
           [Op.eq]: hr_Id,
         },
       },
     });
-    if (typelaw.length != 0) {
+    if (type_assets) {
       return (this.msg = {
         status: 200,
-        rs: typelaw,
+        rs: law,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Typeassets Id is notfound",
       });
     }
-    return;
   }
   //select
-  async selectTypeLaw(Id) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
+  async selectTypeassets(Id) {
+    const type_assets = await Typeassets.findByPk(Id);
+    if (type_assets) {
       return (this.msg = {
         status: 200,
-        rs: typelaw,
+        rs: type_assets,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Typeassets Id is notfound",
       });
     }
   }
 }
 
-module.exports = TypeLaws;
+module.exports = TypeAssets;

@@ -16,7 +16,9 @@ const Husbandwife = require("./Staff/HusbandwifeView");
 const Identitycard = require("./Staff/IdentityCardView");
 const Parent = require("./Staff/ParentView");
 const Study = require("./Staff/StudyView");
+const TypeLaw = require("./HumanResource/TypelawView");
 module.exports = {
+  TypeLaw,
   Study,
   Parent,
   Identitycard,

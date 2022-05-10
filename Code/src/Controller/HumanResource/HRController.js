@@ -36,7 +36,7 @@ class HumanResource {
     return this.msg;
   }
   //get
-  async getHR(Id) {
+  async selectHR(Id) {
     const hr = await HR.findByPk(Id);
     if (hr) {
       return (this.msg = {

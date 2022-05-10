@@ -1,5 +1,5 @@
 const controller = require("../../Controller/index");
-const hr = new controller.HumanResource();
+const hr = new controller.HumanResourceController();
 const staff = new controller.StaffController();
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
     });
   },
   GetHumanResource(req, res) {
-    hr.getHR(req.params.Id).then((result) => {
+    hr.selectHR(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

@@ -28,7 +28,10 @@ const {
   RenderIdentityCard,
 } = require("./IdentityCardValid");
 const { checkStudy, RenderStudy } = require("./StudyValid");
+const { checkTypelaw, RenderTypelaw } = require("./HR/TypeLawValid");
 module.exports = {
+  checkTypelaw,
+  RenderTypelaw,
   checkStudy,
   RenderStudy,
   checkIdentityCard,

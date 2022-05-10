@@ -19,5 +19,6 @@ router.use("/husbandwife", require("./Staff/HusbandwifeRouter"));
 router.use("/identitycard", require("./Staff/IdentityCardRouter"));
 router.use("/parent", require("./Staff/ParentRouter"));
 router.use("/study", require("./Staff/StudyRouter"));
+router.use("/typelaw", require("./HumanResource/TypeAssetsRouter"));
 
 module.exports = router;

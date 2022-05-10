@@ -1,15 +1,14 @@
-const { Op } = require("sequelize");
-const { TypeLaw } = require("../../Model");
+const { Policy } = require("../../Model");
 
-class TypeLaws {
+class Policies {
   msg;
   //create
-  async createTypeLaw(value) {
-    await TypeLaw.create(value)
+  async createPolicy(value) {
+    await Policy.create(value)
       .then((result) => {
         return (this.msg = {
           status: 200,
-          msg: "Create TypeLaw is success",
+          msg: "Create Policy is success",
           re: result,
         });
       })
@@ -22,15 +21,15 @@ class TypeLaws {
     return this.msg;
   }
   //update
-  async updateTypeLaw(Id, value) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
-      await typelaw
+  async updatePolicy(Id, value) {
+    const policy = await Policy.findByPk(Id);
+    if (policy) {
+      await policy
         .update(value)
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "Update TypeLaw is success",
+            msg: "Update Policy is success",
             rs: result,
           });
         })
@@ -43,22 +42,22 @@ class TypeLaws {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Policy Id is notfound",
       });
     }
     return this.msg;
   }
 
   //remove
-  async removeTypeLaw(Id) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
-      await typelaw
+  async removePolicy(Id) {
+    const policy = await Policy.findByPk(Id);
+    if (policy) {
+      await policy
         .destroy()
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Remove TypeLaw is success",
+            msg: "Remove Policy is success",
           });
         })
         .catch((err) => {
@@ -70,49 +69,48 @@ class TypeLaws {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Policy Id is notfound",
         z,
       });
     }
     return this.msg;
   }
   //get
-  async getTypeLaw(hr_Id) {
-    const typelaw = await TypeLaw.findAll({
+  async getPolicy(hr_Id) {
+    const policy = await Policy.findAll({
       where: {
         hr_Id: {
           [Op.eq]: hr_Id,
         },
       },
     });
-    if (typelaw.length != 0) {
+    if (policy) {
       return (this.msg = {
         status: 200,
-        rs: typelaw,
+        rs: law,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Policy Id is notfound",
       });
     }
-    return;
   }
   //select
-  async selectTypeLaw(Id) {
-    const typelaw = await TypeLaw.findByPk(Id);
-    if (typelaw) {
+  async selectPolicy(Id) {
+    const policy = await Policy.findByPk(Id);
+    if (policy) {
       return (this.msg = {
         status: 200,
-        rs: typelaw,
+        rs: policy,
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The TypeLaw Id is notfound",
+        msg: "The Policy Id is notfound",
       });
     }
   }
 }
 
-module.exports = TypeLaws;
+module.exports = Policies;

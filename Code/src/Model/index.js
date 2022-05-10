@@ -59,26 +59,27 @@ db.Typeassets = require("./assets/Typeassets")(sequelize, Sequelize);
 db.Assets = require("./assets/Assets")(sequelize, Sequelize);
 db.Typeaccount = require("./account/Typeaccount")(sequelize, Sequelize);
 db.Account = require("./account/Account")(sequelize, Sequelize);
-db.Evaluation = require("./Employee/Evalaution")(sequelize, Sequelize);
-db.Typevaluation = require("./Employee/Typevalaution")(sequelize, Sequelize);
+db.Evaluation = require("./HR/Evalaution")(sequelize, Sequelize);
+db.Typevaluation = require("./HR/Typevalaution")(sequelize, Sequelize);
 db.Company = require("./Company")(sequelize, Sequelize);
 db.CEOS = require("./CEOS")(sequelize, Sequelize);
-db.Policy = require("./Policy")(sequelize, Sequelize);
-db.Welfare = require("./Welfare")(sequelize, Sequelize);
+db.Policy = require("./HR/Policy")(sequelize, Sequelize);
+db.Welfare = require("./HR/Welfare")(sequelize, Sequelize);
 db.Typeproduct = require("./storage/Typeproduct")(sequelize, Sequelize);
 db.Brands = require("./storage/Brands")(sequelize, Sequelize);
 db.Typestorage = require("./storage/typestorage")(sequelize, Sequelize);
 db.Storageproduct = require("./storage/Storageproduct")(sequelize, Sequelize);
 db.Useproduct = require("./storage/useproduct")(sequelize, Sequelize);
-db.HR = require("./HR")(sequelize, Sequelize);
+db.HR = require("./HR/HR")(sequelize, Sequelize);
+db.TypeLaw = require("./HR/TypeLaw")(sequelize, Sequelize);
+db.Law = require("./HR/Law")(sequelize, Sequelize);
 
 // relationship
 db.Role.hasMany(db.User, { foreignKey: "role_Id" });
 db.Province.hasMany(db.District, { foreignKey: "province_Id" });
 
 //Vacation
-db.Typevacation.belongsTo(db.HR, { foreignKey: "hr_Id" });
-db.Typevacation.hasMany(db.Vacation, { foreignKey: "type_vacation_Id" });
+db.Typevacation.hasMany(db.Vacation, { foreignKey: "type_evacation_Id" });
 db.Vacation.belongsTo(db.Employee, { foreignKey: "employee_Id" });
 db.Vacation.hasOne(db.Approved_vacation, { foreignKey: "vacation_Id" });
 db.Approved_vacation.belongsTo(db.HR, { foreignKey: "hr_Id" });
@@ -116,6 +117,8 @@ db.HR.hasMany(db.Welfare, { foreignKey: "hr_Id" });
 db.HR.hasMany(db.Typeproduct, { foreignKey: "hr_Id" });
 db.HR.hasMany(db.Brands, { foreignKey: "hr_Id" });
 db.HR.hasMany(db.Typestorage, { foreignKey: "hr_Id" });
+db.HR.hasMany(db.TypeLaw, { foreignKey: "hr_Id" });
+db.HR.hasMany(db.Law, { foreignKey: "hr_Id" });
 
 //production
 db.Typeproduct.hasMany(db.Storageproduct, { foreignKey: "typeproduct_Id" });
