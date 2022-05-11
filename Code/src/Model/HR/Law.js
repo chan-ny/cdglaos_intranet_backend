@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    typeLaw_Id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     ltitle: DataTypes.STRING(150),
     lcontent: DataTypes.TEXT,
     lstatus: DataTypes.STRING(15),

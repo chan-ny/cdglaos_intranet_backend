@@ -5,7 +5,7 @@ const checkTypelaw = () => {
     body("hr_Id")
       .isNumeric()
       .notEmpty()
-      .withMessage("HumanRtesource Id is require"),
+      .withMessage("humanResource Id is require"),
     body("tl_title").notEmpty().withMessage("Type name is require"),
     body("tl_status").notEmpty().withMessage("Status is require"),
   ];

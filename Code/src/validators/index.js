@@ -29,7 +29,10 @@ const {
 } = require("./IdentityCardValid");
 const { checkStudy, RenderStudy } = require("./StudyValid");
 const { checkTypelaw, RenderTypelaw } = require("./HR/TypeLawValid");
+const { checklaw, Renderlaw } = require("./HR/LawValid");
 module.exports = {
+  checklaw,
+  Renderlaw,
   checkTypelaw,
   RenderTypelaw,
   checkStudy,

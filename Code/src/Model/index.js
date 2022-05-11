@@ -154,4 +154,6 @@ db.Employee.hasOne(db.BornLocation, { foreignKey: "employee_Id" });
 db.Employee.hasOne(db.HR, { foreignKey: "employee_Id" });
 db.Employee.hasMany(db.Customer, { foreignKey: "employee_Id" });
 
+//law
+db.TypeLaw.hasMany(db.Law, { foreignKey: "typeLaw_Id" });
 module.exports = db;
