@@ -5,6 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", Valid.checklaw(), Valid.Renderlaw, Views.Law.CreateLaw);
-router.post("/:Id", Valid.checklaw(), Valid.Renderlaw, Views.Law.UpdateLaw);
-
+router.put("/:Id", Valid.checklaw(), Valid.Renderlaw, Views.Law.UpdateLaw);
+router.delete("/:Id", Views.Law.RemoveLaw);
+router.get("/", Views.Law.GetLaw)
 module.exports = router;

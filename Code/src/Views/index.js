@@ -18,7 +18,11 @@ const Parent = require("./Staff/ParentView");
 const Study = require("./Staff/StudyView");
 const TypeLaw = require("./HumanResource/TypelawView");
 const Law = require("./HumanResource/LawView");
+const Policy = require("./HumanResource/PolicyView");
+const Welfare = require("./HumanResource/WelfareView");
 module.exports = {
+  Welfare,
+  Policy,
   Law,
   TypeLaw,
   Study,

@@ -50,4 +50,18 @@ module.exports = {
       });
     });
   },
+  RemoveLaw(req, res) {
+    law.removeLaw(req.params.Id).then(result => {
+      res.status(result.status).send({
+        ...result,
+      });
+    })
+  },
+  GetLaw(req, res) {
+    law.getLaw(req.body.hr_Id).then(result => {
+      res.status(result.status).send({
+        ...result,
+      });
+    })
+  }
 };

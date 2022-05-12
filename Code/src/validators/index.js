@@ -30,7 +30,13 @@ const {
 const { checkStudy, RenderStudy } = require("./StudyValid");
 const { checkTypelaw, RenderTypelaw } = require("./HR/TypeLawValid");
 const { checklaw, Renderlaw } = require("./HR/LawValid");
+const { checkPolicy, RenderPolicy } = require("./HR/PolicyValid");
+const { checkWelfare, RenderWelfare } = require("./HR/WelfareValid");
 module.exports = {
+  checkWelfare,
+  RenderWelfare,
+  checkPolicy,
+  RenderPolicy,
   checklaw,
   Renderlaw,
   checkTypelaw,

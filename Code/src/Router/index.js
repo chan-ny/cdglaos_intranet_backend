@@ -21,5 +21,7 @@ router.use("/parent", require("./Staff/ParentRouter"));
 router.use("/study", require("./Staff/StudyRouter"));
 router.use("/typelaw", require("./HumanResource/TypeAssetsRouter"));
 router.use("/law", require("./HumanResource/LawRouter"));
+router.use("/policy", require("./HumanResource/PolicyRouter"));
+router.use("/welfare", require("./HumanResource/WelfareRouter"));
 
 module.exports = router;

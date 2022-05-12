@@ -70,7 +70,6 @@ class Welfares {
       return (this.msg = {
         status: 404,
         msg: "The Welfare Id is notfound",
-        z,
       });
     }
     return this.msg;

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Policy } = require("../../Model");
 
 class Policies {
@@ -70,7 +71,6 @@ class Policies {
       return (this.msg = {
         status: 404,
         msg: "The Policy Id is notfound",
-        z,
       });
     }
     return this.msg;
@@ -84,10 +84,10 @@ class Policies {
         },
       },
     });
-    if (policy) {
+    if (policy.length != 0) {
       return (this.msg = {
         status: 200,
-        rs: law,
+        rs: policy,
       });
     } else {
       return (this.msg = {

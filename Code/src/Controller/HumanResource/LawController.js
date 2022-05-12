@@ -70,7 +70,6 @@ class Laws {
       return (this.msg = {
         status: 404,
         msg: "The Law Id is notfound",
-        z,
       });
     }
     return this.msg;
@@ -95,6 +94,7 @@ class Laws {
         msg: "The Law Id is notfound",
       });
     }
+    
   }
   //select
   async selectLaw(Id) {
