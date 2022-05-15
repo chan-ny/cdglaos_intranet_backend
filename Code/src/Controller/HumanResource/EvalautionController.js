@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Evaluation } = require("../../Model");
 
 class Evalautions {
@@ -70,7 +71,6 @@ class Evalautions {
       return (this.msg = {
         status: 404,
         msg: "The Evaluation Id is notfound",
-        z,
       });
     }
     return this.msg;
@@ -84,10 +84,10 @@ class Evalautions {
         },
       },
     });
-    if (evalaution) {
+    if (evalaution.length != 0) {
       return (this.msg = {
         status: 200,
-        rs: law,
+        rs: evalaution,
       });
     } else {
       return (this.msg = {

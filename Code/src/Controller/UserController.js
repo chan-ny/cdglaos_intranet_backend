@@ -1,5 +1,6 @@
 const { User } = require("../Model");
 const { jwtCreate } = require("../Helper/Jwt");
+const { menuAdmin } = require("../Helper/menuAdmin");
 
 class Users {
   msg;
@@ -51,8 +52,15 @@ class Users {
     }
 
     const userJSON = users.toJSON();
+    let menu = null;
+    if (userJSON.role_Id == 1) {
+      menu = menuAdmin;
+    } else {
+      menu = null;
+    }
     return (this.msg = {
       status: 200,
+      menu: menu,
       users: userJSON.uemail,
       token: jwtCreate(userJSON), // create Token on User
     });

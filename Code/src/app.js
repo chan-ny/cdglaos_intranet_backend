@@ -21,8 +21,9 @@ app.use(cors());
 app.use("/public", express.static(path.join(__dirname, "public")));
 require("./Helper/Passport");
 
-// app.use("/api", middleware, require("./Router/index"));
-app.use("/api", require("./Router/index"));
+app.use("/api", middleware, require("./Router/index"));
+
+app.use("/pm", require("./Router/index"));
 
 app.get("/", (req, res) => {
   res.send("Hello, Intranet");

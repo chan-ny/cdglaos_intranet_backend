@@ -32,7 +32,16 @@ const { checkTypelaw, RenderTypelaw } = require("./HR/TypeLawValid");
 const { checklaw, Renderlaw } = require("./HR/LawValid");
 const { checkPolicy, RenderPolicy } = require("./HR/PolicyValid");
 const { checkWelfare, RenderWelfare } = require("./HR/WelfareValid");
+const {
+  checkType_Evaluation,
+  RenderType_Evaluation,
+} = require("./HR/TypeEvaluationValid");
+const { checkEvaluation, RenderEvaluation } = require("./HR/EvaluationValid");
 module.exports = {
+  checkEvaluation,
+  RenderEvaluation,
+  checkType_Evaluation,
+  RenderType_Evaluation,
   checkWelfare,
   RenderWelfare,
   checkPolicy,

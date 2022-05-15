@@ -1,4 +1,5 @@
 const { Company } = require("../Model");
+const { getPaginationData, getPagination } = require("../Helper/Pagination");
 class Companys {
   msg;
   //create
@@ -120,13 +121,18 @@ class Companys {
     }
   }
   // all
-  async allCompany() {
-    await Company.findAll()
+  async allCompany(page, size) {
+    const { limit, offset } = getPagination(page, size);
+    await Company.findAll({
+      limit: limit,
+      offset: offset,
+    })
       .then((result) => {
+        const response = getPaginationData(result, page, limit);
         return (this.msg = {
           status: 200,
           counts: result.length,
-          rs: result,
+          rs: response,
         });
       })
       .catch((err) => {

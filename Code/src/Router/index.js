@@ -23,5 +23,7 @@ router.use("/typelaw", require("./HumanResource/TypeAssetsRouter"));
 router.use("/law", require("./HumanResource/LawRouter"));
 router.use("/policy", require("./HumanResource/PolicyRouter"));
 router.use("/welfare", require("./HumanResource/WelfareRouter"));
+router.use("/type_evaluation", require("./HumanResource/TypeEvaluationRouter"));
+router.use("/evaluation", require("./HumanResource/EvaluationRouter"));
 
 module.exports = router;

@@ -62,7 +62,8 @@ module.exports = {
     });
   },
   AllCompany(req, res) {
-    company.allCompany().then((result) => {
+    const { page, size } = req.query;
+    company.allCompany(page, size).then((result) => {
       res.status(result.status).send({
         ...result,
       });

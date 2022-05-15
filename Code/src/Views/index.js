@@ -20,7 +20,11 @@ const TypeLaw = require("./HumanResource/TypelawView");
 const Law = require("./HumanResource/LawView");
 const Policy = require("./HumanResource/PolicyView");
 const Welfare = require("./HumanResource/WelfareView");
+const TypeEvaluation = require("./HumanResource/TypeEvaluationView");
+const Evaluation = require("./HumanResource/EvaluationView");
 module.exports = {
+  Evaluation,
+  TypeEvaluation,
   Welfare,
   Policy,
   Law,

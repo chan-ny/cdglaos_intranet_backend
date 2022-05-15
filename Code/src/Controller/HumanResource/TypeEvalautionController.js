@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Typevaluation } = require("../../Model");
 
 class TypeEvalautions {
@@ -70,7 +71,6 @@ class TypeEvalautions {
       return (this.msg = {
         status: 404,
         msg: "The Typevaluation Id is notfound",
-        z,
       });
     }
     return this.msg;
@@ -84,10 +84,10 @@ class TypeEvalautions {
         },
       },
     });
-    if (type_evalaution) {
+    if (type_evalaution.length != 0) {
       return (this.msg = {
         status: 200,
-        rs: law,
+        rs: type_evalaution,
       });
     } else {
       return (this.msg = {
