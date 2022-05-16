@@ -7,7 +7,7 @@ const menuAdmin = [
   },
   {
     titleENG: "Account",
-    titleLAO: "ເພີ່ມບັນຊີຜູເໃຊ້",
+    titleLAO: "ເພີ່ມບັນຊີຜູ້ໃຊ້",
     icon: "mdi-account-box-multiple",
     route: "/account",
   },
