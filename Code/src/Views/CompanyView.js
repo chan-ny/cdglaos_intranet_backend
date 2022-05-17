@@ -41,7 +41,7 @@ module.exports = {
     }
   },
   UpdateCompanyText(req, res) {
-    company.updateCompanyText(req.body).then((result) => {
+    company.updateCompanyText(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });
@@ -64,6 +64,13 @@ module.exports = {
   AllCompany(req, res) {
     const { page, size } = req.query;
     company.allCompany(page, size).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
+  RemoveCompany(req, res) {
+    company.removeCompany(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

@@ -31,8 +31,8 @@ class Companys {
     return this.msg;
   }
   //update
-  async updateCompanyText(value) {
-    const company = await Company.findByPk(value.cpn_Id);
+  async updateCompanyText(Id, value) {
+    const company = await Company.findByPk(Id);
     if (company) {
       await company.update(value).then(() => {
         return (this.msg = {
@@ -105,7 +105,7 @@ class Companys {
     }
     return this.msg;
   }
-
+  //get
   async getCompany(Id) {
     const company = await Company.findByPk(Id);
     if (company) {
@@ -119,6 +119,31 @@ class Companys {
         msg: "The Compnay Id is notfound",
       });
     }
+  }
+  async removeCompany(Id) {
+    const company = await Company.findByPk(Id);
+    if (company) {
+      company
+        .destroy()
+        .then((result) => {
+          return (this.msg = {
+            status: 200,
+            rs: result,
+          });
+        })
+        .catch((err) => {
+          return (this.msg = {
+            status: 500,
+            msg: err,
+          });
+        });
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "The Compnay Id is notfound",
+      });
+    }
+    return this.msg;
   }
   // all
   async allCompany(page, size) {
