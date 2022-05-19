@@ -15,7 +15,9 @@ module.exports = {
   async UpdateCompanyImage(req, res) {
     const company = await Company.findByPk(req.params.Id);
     if (company) {
-      await up.getUnlink("./public/images/company/" + company.cpn_logo);
+      if (company.cpn_logo != "default_iamge.jpg") {
+        await up.getUnlink("./public/images/company/" + company.cpn_logo);
+      }
       up.path = "./public/images/company";
       await up.uploadSingle(req, res, (err) => {
         if (err) {
@@ -48,7 +50,7 @@ module.exports = {
     });
   },
   DisableCompany(req, res) {
-    company.disableCompany(req.params.Id).then((result) => {
+    company.disableCompany(req.params.Id, req.body.state).then((result) => {
       res.status(result.status).send({
         ...result,
       });
