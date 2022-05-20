@@ -1,5 +1,7 @@
 const { Company } = require("../Model");
 const { getPaginationData, getPagination } = require("../Helper/Pagination");
+const uploadImage = require("../components/uploadImage");
+const up = new uploadImage();
 class Companys {
   msg;
   //create
@@ -49,12 +51,12 @@ class Companys {
     return this.msg;
   }
   //disable
-  async disableCompany(Id) {
+  async disableCompany(Id, state) {
     const company = await Company.findByPk(Id);
     if (company) {
       await company
         .update({
-          cpn_state: "inactive",
+          cpn_state: state,
         })
         .then(() => {
           return (this.msg = {
@@ -123,12 +125,15 @@ class Companys {
   async removeCompany(Id) {
     const company = await Company.findByPk(Id);
     if (company) {
+      if (company.cpn_logo != "default_iamge.jpg") {
+        await up.getUnlink("./public/images/company/" + company.cpn_logo);
+      }
       company
         .destroy()
-        .then((result) => {
+        .then(() => {
           return (this.msg = {
             status: 200,
-            rs: result,
+            rs: company,
           });
         })
         .catch((err) => {
