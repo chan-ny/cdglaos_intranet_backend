@@ -55,11 +55,13 @@ module.exports = {
     });
   },
   RenewCompany(req, res) {
-    company.renewCompnany(req.params.Id, req.query.mDateTime).then((result) => {
-      res.status(result.status).send({
-        ...result,
+    company
+      .renewCompnany(req.params.Id, req.body.cpn_endDate)
+      .then((result) => {
+        res.status(result.status).send({
+          ...result,
+        });
       });
-    });
   },
   AllCompany(req, res) {
     const { page, size } = req.query;
