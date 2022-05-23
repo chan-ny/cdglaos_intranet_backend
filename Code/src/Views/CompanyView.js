@@ -30,7 +30,8 @@ module.exports = {
             .then(() => {
               res.status(200).send({
                 status: 200,
-                msg: "Update Company Image is success",
+                msgen: "Update Company Image is success",
+                msgla: "ປ່ຽນຮູບພາບສຳເລັດແລ້ວ",
               });
             });
         }
@@ -38,7 +39,8 @@ module.exports = {
     } else {
       res.status(404).send({
         status: 404,
-        msg: "The Company Id is not found",
+        msgen: "The Company Id is not found",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
   },

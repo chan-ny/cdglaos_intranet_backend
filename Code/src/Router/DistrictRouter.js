@@ -11,12 +11,13 @@ router.post(
   View.District.CreateDistrict
 );
 router.put(
-  "/",
+  "/:Id",
   Valaidation.checkDistrict(),
   Valaidation.RenderDistrict,
   View.District.UpdateDistrict
 );
 router.get("/", View.District.AllDistrict);
 router.get("/:Id", View.District.GetDistrict);
+router.delete("/:Id", View.District.DistrictDelete);
 
 module.exports = router;

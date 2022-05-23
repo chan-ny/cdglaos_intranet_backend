@@ -30,4 +30,11 @@ module.exports = {
       });
     });
   },
+  GenderAll(req, res) {
+    gender.genderAll().then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
 };

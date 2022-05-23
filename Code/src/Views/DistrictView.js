@@ -10,7 +10,7 @@ module.exports = {
     });
   },
   UpdateDistrict(req, res) {
-    district.updateDistrict(req.body).then((result) => {
+    district.updateDistrict(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });
@@ -25,6 +25,13 @@ module.exports = {
   },
   GetDistrict(req, res) {
     district.getDistrict(req.params.Id).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
+  DistrictDelete(req, res) {
+    district.districtRemove(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

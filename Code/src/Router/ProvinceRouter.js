@@ -11,7 +11,7 @@ router.post(
   Views.Province.CreateProvince
 );
 router.put(
-  "/",
+  "/:Id",
   Validation.chaeckProvince(),
   Validation.RenderProvince,
   Views.Province.UpdateProvince

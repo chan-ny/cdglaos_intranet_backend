@@ -10,7 +10,7 @@ module.exports = {
     });
   },
   async UpdateProvince(req, res) {
-    await provice.updateProvince(req.body).then((result) => {
+    await provice.updateProvince(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });

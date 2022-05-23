@@ -7,5 +7,6 @@ router.post("/", Views.Gender.createGender);
 router.put("/", Views.Gender.updateGender);
 router.put("/dis/:Id", Views.Gender.disableGender);
 router.get("/:Id", Views.Gender.getGender);
+router.get("/", Views.Gender.GenderAll);
 
 module.exports = router;

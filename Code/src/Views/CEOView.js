@@ -86,6 +86,24 @@ module.exports = {
       });
     });
   },
+  async RemoveCEO(req, res) {
+    await ceo.getCEO(req.params.Id).then((result) => {
+      if (result.status == 404) {
+        res.status(result.status).send({
+          ...result,
+        });
+        return;
+      }
+      if (result.rs.dataValues.ceo_image !== "default_iamge.jpg") {
+        up.getUnlink("./public/images/ceo/" + result.rs.dataValues.ceo_image);
+      }
+      ceo.removeCEO(req.params.Id).then((result) => {
+        res.status(result.status).send({
+          ...result,
+        });
+      });
+    });
+  },
   AllCEO(req, res) {
     ceo.allCEO().then((result) => {
       res.status(result.status).send({

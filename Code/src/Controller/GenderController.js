@@ -88,6 +88,25 @@ class Genders {
       });
     }
   }
+  // all
+  async genderAll() {
+    await Gender.findAll()
+      .then((result) => {
+        return (this.msg = {
+          status: 200,
+          counts: result.length,
+          rs: result,
+        });
+      })
+      .catch(() => {
+        return (this.msg = {
+          status: 404,
+          msgen: "Gender is notfound",
+          msgla: "ບໍ່ມີຂໍ້ມູນເພດ",
+        });
+      });
+    return this.msg;
+  }
 }
 
 module.exports = Genders;

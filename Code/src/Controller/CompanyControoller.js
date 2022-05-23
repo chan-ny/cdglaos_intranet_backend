@@ -1,4 +1,4 @@
-const { Company } = require("../Model");
+const { Company, CEOS } = require("../Model");
 const { getPaginationData, getPagination } = require("../Helper/Pagination");
 const uploadImage = require("../components/uploadImage");
 const up = new uploadImage();
@@ -20,7 +20,8 @@ class Companys {
       .then((result) => {
         return (this.msg = {
           status: 200,
-          msg: "Create Company is success",
+          msgen: "Create Company is success",
+          msgla: "ສ້າງຂໍ້ມູນບໍລິສັດສຳເລັດແລ້ວ",
           rs: result,
         });
       })
@@ -39,13 +40,15 @@ class Companys {
       await company.update(value).then(() => {
         return (this.msg = {
           status: 200,
-          msg: "Update Company is success",
+          msgen: "Update Company is success",
+          msgla: "ແກ້ໄຂຂໍ້ມູນບໍລິສັດສຳເລັດແລ້ວ",
         });
       });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Company Id is not found",
+        msgen: "The company Id is notfound",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
     return this.msg;
@@ -61,7 +64,8 @@ class Companys {
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Disable company is success",
+            msgen: "Disable company is success",
+            msgla: "ເປີດ/ປີດການໃຊ້ງານ ຂອງບໍລິສັດສຳເລັດແລ້ວ",
           });
         })
         .catch((err) => {
@@ -73,7 +77,8 @@ class Companys {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The company Id is notfound",
+        msgen: "The company Id is notfound",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
     return this.msg;
@@ -90,7 +95,8 @@ class Companys {
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Renew company is success",
+            msgen: "Renew company is success",
+            msgla: "ຕໍ່ສັນຍາບໍລິສັກສຳເລັດແລ້ວ",
           });
         })
         .catch((err) => {
@@ -102,7 +108,8 @@ class Companys {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The company Id is notfound",
+        msgen: "The company Id is notfound",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
     return this.msg;
@@ -118,7 +125,8 @@ class Companys {
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Compnay Id is notfound",
+        msgen: "The Compnay Id is notfound",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
   }
@@ -128,24 +136,26 @@ class Companys {
       if (company.cpn_logo != "default_iamge.jpg") {
         await up.getUnlink("./public/images/company/" + company.cpn_logo);
       }
-      company
-        .destroy()
-        .then(() => {
-          return (this.msg = {
-            status: 200,
-            rs: company,
-          });
-        })
-        .catch((err) => {
-          return (this.msg = {
-            status: 500,
-            msg: err,
-          });
+      try {
+        await company.destroy();
+        return (this.msg = {
+          status: 200,
+          msge: "Delete Company is success",
+          msgla: "ລືບຂໍ້ມູນບໍລິສັດສຳເລັດແລ້ວ",
         });
+      } catch (error) {
+        return (this.msg = {
+          status: 500,
+          msgen:
+            "Can`t delete fiel. Because Data has Relationship with table other",
+          msgla: "ບໍ່ສາມາດລືບຂໍ້ມູນ ເນື່ອງຈາກວ່າຂໍ້ມູນມິຄວາມສຳພັນຢູ່",
+        });
+      }
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Compnay Id is notfound",
+        msge: "The Compnay Id is notfound",
+        msgla: "ລະຫັດທີ່ຄົ້ນຫາບໍ່ມີໃນລະບົບ",
       });
     }
     return this.msg;
@@ -154,6 +164,7 @@ class Companys {
   async allCompany(page, size) {
     const { limit, offset } = getPagination(page, size);
     await Company.findAll({
+      include: [{ model: CEOS, attributes: ["ceo_Id"] }],
       limit: limit,
       offset: offset,
     })

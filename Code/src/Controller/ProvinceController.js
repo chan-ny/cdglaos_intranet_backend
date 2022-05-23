@@ -1,4 +1,4 @@
-const { Province } = require("../Model");
+const { Province, District } = require("../Model");
 
 class Provinces {
   msg;
@@ -8,44 +8,46 @@ class Provinces {
       .then((result) => {
         return {
           status: 200,
-          msg: "Create The Province is success",
+          msgen: "Create The Province is success",
+          msgla: "ບັນທືກແຂວງສຳເລັດແລ້ວ",
           rs: result,
         };
       })
-      .catch((err) => {
+      .catch(() => {
         return {
           status: 501,
-          msg: "Can`t Create The province Because value incurrect",
-          rs: err,
+          msgen: "Can`t Create The province Because value incurrect",
+          msgla: "ບໍ່ສາມາດບັນທຶກຂໍ້ມູນແຂວງໄດ້ ເນື່ອງຈາກເກີດຂໍ້ຜີດພາດ",
         };
       });
     return provice;
   }
   //update
-  async updateProvince(value) {
+  async updateProvince(Id, value) {
     let msg;
-    const provice = await Province.findByPk(value.pv_Id);
+    const provice = await Province.findByPk(Id);
     if (provice) {
       await provice
         .update(value)
-        .then((result) => {
+        .then(() => {
           return (msg = {
             status: 200,
-            msg: "Updatae The Province is success",
-            rs: result,
+            msgen: "Updatae The Province is success",
+            msgla: "ແກ້ໄຂຂໍ້ມູນແຂວງສຳເລັດແລ້ວ",
           });
         })
-        .catch((err) => {
+        .catch(() => {
           return (msg = {
             status: 501,
-            msg: "Can`t Updatae at The Province",
-            rs: err,
+            msgen: "Can`t Updatae at The Province",
+            msgla: "ບໍ່ສາມາດຂໍ້ມູນແຂວງ",
           });
         });
     } else {
       return (msg = {
         status: 404,
-        msg: "The Province ID is notfound",
+        msgen: "The Province ID is notfound",
+        msgla: "ລະຫັດແຂວງບໍ່ມີ",
       });
     }
     return msg;
@@ -60,47 +62,56 @@ class Provinces {
         .then(() => {
           return (msg = {
             status: 200,
-            msg: "Delete The Province is success",
+            msgen: "Delete The Province is success",
+            msgla: "ລືບຂໍ້ມູນແຂວງສຳເລັດແລ້ວ",
           });
         })
-        .catch((err) => {
+        .catch(() => {
           return (msg = {
             status: 501,
-            msg: "Can`t Updatae at The Province",
-            rs: err,
+            msgen: "Can`t delete at The Province",
+            msgla: "ບໍ່ສາມາດລືບຂໍ້ມູນແຂວງ",
           });
         });
     } else {
       return (msg = {
         status: 404,
-        msg: "The Province ID is notfound",
+        msgen: "The Province ID is notfound",
+        msgla: "ລະຫັດແຂວງບໍ່ມີ",
       });
     }
     return msg;
   }
   //all
   async allProvince() {
-    const provice = await Province.findAll()
+    const provice = await Province.findAll({
+      include: [
+        {
+          model: District,
+          attributes: ["dt_laoName", "dt_engName", "createdAt"],
+        },
+      ],
+    })
       .then((result) => {
         if (result) {
           return {
             status: 200,
-            msg: "Display all The Province",
             consts: result.length,
             rs: result,
           };
         } else {
           return {
             status: 404,
-            msg: "The Province Id is notfound",
+            msgen: "The Province Id is notfound",
+            msgla: "ຂໍ້ມູນແຂວງບໍ່ມີ",
           };
         }
       })
-      .catch((err) => {
+      .catch(() => {
         return {
-          status: 200,
-          msg: "Can`t load value of province",
-          rs: err,
+          status: 501,
+          msgen: "Can`t load value of province",
+          msgla: "ບໍ່ສາມາດໂຫລດຂໍ້ມູນແຂວງໄດ້",
         };
       });
     return provice;

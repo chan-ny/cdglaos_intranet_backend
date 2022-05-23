@@ -29,14 +29,16 @@ class Districts {
         .then((result) => {
           return (this.msg = {
             status: 200,
-            msg: "Create districtn is success",
+            msgen: "Create districtn is success",
+            msgla: "ບັນທືກຂໍ້ມູນເມືອງສຳເລັດແລ້ວ",
             rs: result,
           });
         })
         .catch(() => {
           return (this.msg = {
             status: 501,
-            msg: "Can`t create district ",
+            msgen: "Can`t create district ",
+            msgla: "ບໍ່ສາມາດບັນທຶກຂໍ້ມູນເມືອງ ",
           });
         });
     }
@@ -44,30 +46,32 @@ class Districts {
     return this.msg;
   }
   //update
-  async updateDistrict(value) {
+  async updateDistrict(Id, value) {
     await this.GetProvinces(value.province_Id);
     if (this.province_Id != undefined) {
-      const district = await District.findByPk(value.dt_Id);
+      const district = await District.findByPk(Id);
       if (district) {
         await district
           .update(value)
-          .then((result) => {
+          .then(() => {
             return (this.msg = {
               status: 200,
-              msg: "update The District is success",
-              rs: result,
+              msgen: "update The District is success",
+              msgla: "ແກ້ໄຂຂໍ້ມູນເມືອງສຳເລັດແລ້ວ",
             });
           })
           .catch(() => {
             return (this.msg = {
               status: 501,
-              msg: "Can`t Update district",
+              msgen: "Can`t Update district",
+              msgla: "ບໍ່ສາມາດແກ້ໄຂຂໍ້ມູນເມືອງ",
             });
           });
       } else {
         return (this.msg = {
           status: 404,
-          msg: "The District Id is notfound",
+          msgen: "The District Id is notfound",
+          msgla: "ຂໍ້ມູນບໍ່ມີໃນລະບົບ",
         });
       }
     }
@@ -78,7 +82,7 @@ class Districts {
   async allDistrict() {
     await sequelize
       .query(
-        "select Districts.dt_Id,Provinces.pv_laoName,Provinces.pv_engName,Districts.dt_laoName,Districts.dt_engName,Districts.dt_engName,Districts.createdAt,Districts.updatedAt from Districts " +
+        "select Districts.dt_Id,Provinces.pv_laoName,Provinces.pv_engName,Districts.dt_laoName,Districts.dt_engName,Districts.dt_engName,Districts.dt_status,Districts.createdAt,Districts.updatedAt from Districts " +
           " inner join Provinces on Districts.province_Id = Provinces.pv_Id " +
           " order by Districts.dt_Id DESC",
         { type: QueryTypes.SELECT }
@@ -100,6 +104,7 @@ class Districts {
       });
     return this.msg;
   }
+  //get
   async getDistrict(Id) {
     await this.GetProvinces(Id);
     if (this.province_Id != undefined) {
@@ -137,7 +142,7 @@ class Districts {
     this.province_Id = undefined;
     return this.msg;
   }
-
+  //select
   async SelectDistrict(Id) {
     const district = await District.findByPk(Id);
     if (district) {
@@ -145,6 +150,31 @@ class Districts {
         status: 200,
         rs: district,
       });
+    } else {
+      return (this.msg = {
+        status: 404,
+        msg: "The District Id is notfound",
+      });
+    }
+  }
+  //remove
+  async districtRemove(Id) {
+    const district = await District.findByPk(Id);
+    if (district) {
+      try {
+        await district.destroy();
+        return (this.msg = {
+          status: 200,
+          msgen: "Delete District is success",
+          msgla: "ລືບຂໍ້ມູນເມືອງສຳເລັດ",
+        });
+      } catch (error) {
+        return (this.msg = {
+          status: 501,
+          msgen: "Can`t Delete District",
+          msgla: "ບໍ່ສາມາດລືບຂໍ້ມູນເມືອງ",
+        });
+      }
     } else {
       return (this.msg = {
         status: 404,
