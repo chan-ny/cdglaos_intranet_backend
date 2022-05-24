@@ -54,12 +54,12 @@ class Companys {
     return this.msg;
   }
   //disable
-  async disableCompany(Id, state) {
+  async disableCompany(Id, value) {
     const company = await Company.findByPk(Id);
     if (company) {
       await company
         .update({
-          cpn_state: state,
+          cpn_state: value.status,
         })
         .then(() => {
           return (this.msg = {
@@ -71,7 +71,8 @@ class Companys {
         .catch((err) => {
           return (this.msg = {
             status: 500,
-            msg: err,
+            msgen: "Can`t disable Company",
+            msgla: "ບໍ່ສາມາດປີດການໃຊ້ງານ",
           });
         });
     } else {
@@ -140,7 +141,7 @@ class Companys {
         await company.destroy();
         return (this.msg = {
           status: 200,
-          msge: "Delete Company is success",
+          msgen: "Delete Company is success",
           msgla: "ລືບຂໍ້ມູນບໍລິສັດສຳເລັດແລ້ວ",
         });
       } catch (error) {
@@ -162,6 +163,7 @@ class Companys {
   }
   // all
   async allCompany(page, size) {
+    const mCount = await Company.findAll();
     const { limit, offset } = getPagination(page, size);
     await Company.findAll({
       include: [{ model: CEOS, attributes: ["ceo_Id"] }],
@@ -172,7 +174,7 @@ class Companys {
         const response = getPaginationData(result, page, limit);
         return (this.msg = {
           status: 200,
-          counts: result.length,
+          counts: mCount.length,
           rs: response,
         });
       })

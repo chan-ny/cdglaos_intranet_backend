@@ -10,21 +10,28 @@ module.exports = {
     });
   },
   async updateGender(req, res) {
-    await gender.UpdateGender(req.body).then((result) => {
+    await gender.UpdateGender(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });
     });
   },
   async disableGender(req, res) {
-    await gender.DisableGender({ gd_Id: req.params.Id }).then((result) => {
+    await gender.DisableGender(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });
     });
   },
-  async getGender(req, res) {
+  getGender(req, res) {
     gender.GetGender(req.params.Id).then((result) => {
+      res.status(result.status).send({
+        ...result,
+      });
+    });
+  },
+  genderDelete(req, res) {
+    gender.genderDelete(req.params.Id).then((result) => {
       res.status(result.status).send({
         ...result,
       });

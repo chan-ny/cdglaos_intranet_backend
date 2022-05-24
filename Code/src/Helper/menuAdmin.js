@@ -43,6 +43,24 @@ const menuAdmin = [
   },
 ];
 
+const userMenu = [
+  {
+    Id: 1,
+    titleENG: "Dashboard",
+    titleLAO: "ໜ້າແລກ",
+    icon: "mdi-view-dashboard",
+    route: "/",
+  },
+  {
+    Id: 1,
+    titleENG: "Management",
+    titleLAO: "ຈັດການຂໍ້ມູນ",
+    icon: "mdi-cog",
+    submenu: "",
+  },
+];
+
 module.exports = {
   menuAdmin,
+  userMenu,
 };

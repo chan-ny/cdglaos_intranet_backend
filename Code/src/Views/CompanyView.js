@@ -52,7 +52,7 @@ module.exports = {
     });
   },
   DisableCompany(req, res) {
-    company.disableCompany(req.params.Id, req.body.state).then((result) => {
+    company.disableCompany(req.params.Id, req.body).then((result) => {
       res.status(result.status).send({
         ...result,
       });

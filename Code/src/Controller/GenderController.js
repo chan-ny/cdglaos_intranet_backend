@@ -1,4 +1,5 @@
 const { Gender } = require("../Model");
+const { getPaginationData, getPagination } = require("../Helper/Pagination");
 
 class Genders {
   msg;
@@ -8,67 +9,75 @@ class Genders {
       .then(() => {
         return (this.msg = {
           status: 200,
-          msg: "Create Gender is success",
+          msgen: "Create Gender is success",
+          msgla: "ບັນທຶກຂໍ້ມູນເພດສຳເລັດແລ້ວ",
         });
       })
-      .catch((err) => {
+      .catch(() => {
         return (this.msg = {
           status: 501,
-          msg: err,
+          msgen: "Can`t Save Gender",
+          msgen: "ບໍ່ສາມາດບັນທຶກຂໍ້ມູນເພດ",
         });
       });
     return this.msg;
   }
   // update
-  async UpdateGender(value) {
-    const gender = await Gender.findByPk(value.gd_Id);
+  async UpdateGender(Id, value) {
+    const gender = await Gender.findByPk(Id);
     if (gender) {
       await gender
         .update(value)
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Update Gender is success",
+            msgen: "Update Gender is success",
+            msgla: "ແກ້ໄຂຂໍ້ມູນເພດ",
           });
         })
-        .catch((err) => {
+        .catch(() => {
           return (this.msg = {
             status: 501,
-            msg: err,
+            msgen: "Can`t Update Gender",
+            msgla: "ບໍ່ສາມດແກ້ໄຂຂໍ້ມູນເພດ",
           });
         });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Gender Id is notfound",
+        msgen: "The Gender Id is notfound",
+        msgla: "ຂໍ້ມູນເພດບໍ່ມີ",
       });
     }
     return this.msg;
   }
   //disble
-  async DisableGender(value) {
-    const gender = await Gender.findByPk(value.gd_Id);
+  async DisableGender(Id, value) {
+    const gender = await Gender.findByPk(Id);
     if (gender) {
       await gender
         .update({
-          gd_status: "inactive",
+          gd_status: value.status,
         })
         .then(() => {
           return (this.msg = {
             status: 200,
-            msg: "Disable Gender is success",
+            msgen: "Disable Gender is success",
+            msgla: "ເປີດ/ປີດການໃຊ້ງານ",
           });
         })
         .catch((err) => {
           return (this.msg = {
             status: 501,
-            msg: err,
+            msgen: "Can`t gender disable",
+            msgla: "ບໍ່ສາມາດປີດການໃຊ້ງານ",
           });
         });
     } else {
       return (this.msg = {
         status: 404,
-        msg: "The Gender Id is notfound",
+        msgen: "The Gender Id is notfound",
+        msgla: "ຂໍ້ມູນເພດບໍ່ມີ",
       });
     }
     return this.msg;
@@ -84,18 +93,51 @@ class Genders {
     } else {
       return (this.msg = {
         status: 404,
-        rs: "The Gender Id is notfuond",
+        msgen: "The Gender Id is notfound",
+        msgla: "ຂໍ້ມູນເພດບໍ່ມີ",
+      });
+    }
+  }
+  //delete
+  async genderDelete(Id) {
+    const gender = await Gender.findByPk(Id);
+    if (gender) {
+      try {
+        await gender.destroy();
+        return (this.msg = {
+          status: 200,
+          msgen: "Delete Gender is success",
+          msgla: "ລົບຂໍ້ມູນເພດສຳເລັດ",
+        });
+      } catch (error) {
+        return (this.msg = {
+          status: 501,
+          msgen: "Can`t Delete Gender",
+          msgla: "ບໍ່ສາມາດລືບຂໍ້ມູນເພດ",
+        });
+      }
+    } else {
+      return (this.msg = {
+        status: 404,
+        msgen: "The Gender Id is notfound",
+        msgla: "ຂໍ້ມູນເພດບໍ່ມີ",
       });
     }
   }
   // all
-  async genderAll() {
-    await Gender.findAll()
+  async genderAll(page, size) {
+    const mCount = await Gender.findAll();
+    const { limit, offset } = getPagination(page, size);
+    await Gender.findAll({
+      limit: limit,
+      offset: offset,
+    })
       .then((result) => {
+        const response = getPaginationData(result, page, limit);
         return (this.msg = {
           status: 200,
-          counts: result.length,
-          rs: result,
+          counts: mCount.length,
+          rs: response,
         });
       })
       .catch(() => {
